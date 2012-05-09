@@ -1,0 +1,55 @@
+#labels Featured,Phase-Implementation
+=Estrutura dos arquivos=
+
+C:\
+-weblab
+--server
+--client
+
+-xampp
+
+-Python26
+
+
+=Softwares necessários=
+
+Windows
+*XAMPP
+*Python 2.6 for 32 bits.
+
+=Variáveis de Ambiente=
+
+Colocar as Variáveis de Ambiente para o mysql e python
+
+set PATH=%PATH%;C:\xampp\mysql\bin
+set PATH=%PATH%;C:\Python26\
+
+testar com echo%PATH%
+
+=Configurar WebServer=
+
+Copiar C:\weblab\server\server\launch\apache
+apache_weblab_generic.conf
+apache_weblab_windows.conf
+
+Para C:\xampp\apache\conf
+
+e incluir as seguintes linha no final do arquivo httpd.conf
+
+Include "conf/apache_weblab_windows.conf"
+Include "conf/apache_weblab_generic.conf"
+
+
+=Criar Database=
+
+Executar os seguintes arquivos na pasta C:\weblab\server\server\deploy
+
+create_weblab_administrator.py
+create_databases.py
+weblab_administrator_credentials.py
+deploy.py
+
+
+=Executar experimentos=
+
+weblab/server/launch/sample
