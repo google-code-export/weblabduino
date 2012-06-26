@@ -1,0 +1,36 @@
+#labels Deprecated,Phase-Implementation,Phase-Deploy
+=Client Side=
+
+==Compilar o GWTC==
+
+Microsoft Windows:
+
+C:\weblab\> cd client
+C:\weblab\client\> gwtc
+Buildfile: build.xml
+(...)
+     [java]    Compilation succeeded -- 533.078s
+
+BUILD SUCCESSFUL
+Total time: 9 minutes 11 seconds
+C:\weblab\client\>
+
+
+Será criado o arquivo "war" que poderá ser manipulado pelo Eclipse incluindo-o como um novo projeto. 
+
+Após a inclusão do projeto no Eclipse, devemos criar os pacotes do novo experimento como no exemplo abaixo:
+
+es.deusto.weblab.client.lab.experiments.plugins.br.pucsp.weblab."nome do experimento com a-z 0-9 minúsculas"
+
+Os pacotes devem ser separados nas seguintes categorias:
+
+Ex.:
+br.pucsp.weblab.ligaled
+ -Factory
+ -Experiment
+
+br.pucsp.weblab.ligaledcommands
+ -Comandos que serão utilizados
+
+br.pucsp.weblab.ligaledui
+ -Interface de comandos com Listenner dos comandos + arquivo XML de configuração da pagina
