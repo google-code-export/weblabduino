@@ -3,6 +3,7 @@
 
 ==Compilar o GWTC==
 
+{{{
 Microsoft Windows:
 
 C:\weblab\> cd client
@@ -14,7 +15,7 @@ Buildfile: build.xml
 BUILD SUCCESSFUL
 Total time: 9 minutes 11 seconds
 C:\weblab\client\>
-
+}}}
 
 Será criado o arquivo "war" que poderá ser manipulado pelo Eclipse incluindo-o como um novo projeto. 
 
