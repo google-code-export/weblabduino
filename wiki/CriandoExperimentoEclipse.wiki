@@ -25,12 +25,12 @@ C:\weblab\client\>
 
  Os pacotes devem ser separados nas seguintes categorias:
 
- _br.pucsp.weblab.ligaled_
+ _br.pucsp.weblab."ligaled"_
  * Factory
  * Experiment
 
- _br.pucsp.weblab.ligaledcommands_
+ _br.pucsp.weblab."ligaledcommands"_
  * Comandos que serão utilizados
 
- _br.pucsp.weblab.ligaledui_
+ _br.pucsp.weblab."ligaledui"_
  * Interface de comandos com Listenner dos comandos + arquivo XML de configuração da pagina
