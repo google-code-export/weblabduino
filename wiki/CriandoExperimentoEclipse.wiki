@@ -1,6 +1,12 @@
 #labels Deprecated,Phase-Implementation,Phase-Deploy
 =Client Side=
 
+Instalar o GWTC plugin para o Eclipse no link
+Eclipse 3.7 (Indigo)
+
+[http://dl.google.com/eclipse/plugin/3.7]
+
+
 ==Compilar o GWTC==
 
 {{{
@@ -34,3 +40,11 @@ C:\weblab\client\>
 
  _br.pucsp.weblab."ligaledui"_
  * Interface de comandos com Listenner dos comandos + arquivo XML de configuração da pagina
+
+===Compilar com build.xml===
+
+No projeto do Eclipse compilar o client com o arquivo build.xml
+
+
+===Arquivo de configuração do experimento===
+C:\weblab\client\war\WEB-INF\classes\es\deusto\weblab\public
