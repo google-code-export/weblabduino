@@ -2,7 +2,8 @@
 =Client Side=
 
 Instalar o GWTC plugin para o Eclipse no link
-Eclipse 3.7 (Indigo)
+
+ Eclipse 3.7 (Indigo)
 
 [http://dl.google.com/eclipse/plugin/3.7]
 
