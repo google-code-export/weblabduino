@@ -17,7 +17,7 @@ Total time: 9 minutes 11 seconds
 C:\weblab\client\>
 }}}
 
- Será criado o arquivo "war" que poderá ser manipulado pelo Eclipse incluindo-o como um novo projeto. 
+ Será criado o arquivo "war" que poderá ser manipulado pelo Eclipse incluindo-o como um novo projeto.
 
  Após a inclusão do projeto no Eclipse, devemos criar os pacotes do novo experimento como no exemplo abaixo:
 
