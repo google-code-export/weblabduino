@@ -1,0 +1,6 @@
+#labels Phase-QA,Deprecated,Phase-Deploy
+===Primeiro teste realizado com sucesso !===
+
+Path para experimentos Flash e Java 
+
+   /var/lib/weblab/client/war/weblabclient
