@@ -1,0 +1,16 @@
+#labels Phase-Requirements,Phase-QA,Phase-Deploy
+Para incluir um novo experimento JAVA devemos utilizar como biblioteca o arquivo "plugin.jar" localizado em :
+../weblab/experiments/managed/libs/client/java/libs
+
+A pasta "src" do local abaixo podera ser incluida em um projeto Java no eclipse para ser utilizada como um experimento base.
+
+../weblab/experiments/managed/libs/client/java
+
+
+Assim que criar o experimento deve-se exporta-lo para um arquivo .jar e substituir nos seguintes locais:
+
+../weblab/client/war/weblabclientadmin
+../weblab/client/war/weblabclient
+
+
+Antes de iniciar o servidor limpe o cache dos arquivos Java !
