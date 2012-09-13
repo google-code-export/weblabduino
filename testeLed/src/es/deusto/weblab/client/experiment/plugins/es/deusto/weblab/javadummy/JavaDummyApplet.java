@@ -27,6 +27,8 @@ import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
 import es.deusto.weblab.client.experiment.plugins.java.SerialRead3;
 import es.deusto.weblab.client.experiment.plugins.java.SimpleRead2;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
+import jssc.SerialPort;
+import jssc.SerialPortException;
 
 public class JavaDummyApplet extends WebLabApplet {
 	private static final long serialVersionUID = 1L;
@@ -122,7 +124,30 @@ public class JavaDummyApplet extends WebLabApplet {
 	}
 	
 	
-	
+	public void SerialRead3() {
+	/**
+        SerialPort serialPort = new SerialPort("COM3");
+        try {
+            serialPort.openPort();//Open serial port
+            serialPort.setParams(9600, 8, 1, 0);//Set params.
+            
+            boolean b = true;
+            
+            while (b=true){
+            	
+            	byte[] buffer = serialPort.readBytes(100);//Read 10 bytes from serial port
+            	String source2 = new String(buffer);
+                System.out.println(source2);
+                
+            	
+            }
+            serialPort.closePort();//Close serial port
+        }
+        catch (SerialPortException ex) {
+            System.out.println(ex);
+        }
+        **/
+    }
 	
 	
 	private ImageIcon loadImage(final String path) {
