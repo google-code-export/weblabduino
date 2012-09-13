@@ -88,8 +88,6 @@ public class JavaDummyApplet extends WebLabApplet {
 		}
 		**/
 		
-		SerialRead3 sr3 = new SerialRead3();
-		sr3.SerialRead3();
 		
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
