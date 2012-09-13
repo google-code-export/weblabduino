@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/RXTXcomm.jar"/>
 	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/serial.jar"/>
 	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/SimpleRead.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/jSSC-0.9.0-Release/jSSC-0.9.0-Release/jssc.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
