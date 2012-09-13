@@ -27,4 +27,9 @@ public class SerialRead3 {
             System.out.println(ex);
         }
     }
+    
+    public static void main(String[]args){
+    	SerialRead3 sr3 = new SerialRead3();
+    	sr3.SerialRead3();
+    }
 }
