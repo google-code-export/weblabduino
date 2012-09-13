@@ -108,7 +108,7 @@ public class SimpleRead2
     {
         try
         {
-            (new SimpleRead2()).connect("COM4");
+            (new SimpleRead2()).connect("COM3");
         }
         catch ( Exception e )
         {

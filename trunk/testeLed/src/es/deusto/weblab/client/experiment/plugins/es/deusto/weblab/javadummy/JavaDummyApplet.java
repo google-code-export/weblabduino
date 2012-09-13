@@ -24,6 +24,7 @@ import es.deusto.weblab.client.experiment.plugins.java.Command;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
 import es.deusto.weblab.client.experiment.plugins.java.ICommandCallback;
 import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
+import es.deusto.weblab.client.experiment.plugins.java.SerialRead3;
 import es.deusto.weblab.client.experiment.plugins.java.SimpleRead2;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
 
@@ -61,12 +62,12 @@ public class JavaDummyApplet extends WebLabApplet {
 		messagesPanel.add(this.timeLabel);
 		messagesPanel.add(this.messages);
 		
-		/**
+		
 		final JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		
+		/**
 		for(int i = 0; i < 5; ++i){
 			final JButton button = new JButton("But. " + i);
 			final Command command = new  PulseCommand(i, true);
@@ -86,25 +87,25 @@ public class JavaDummyApplet extends WebLabApplet {
 			buttonsPanel.add(button);
 		}
 		**/
-				
-		SimpleRead2 sr2 = new SimpleRead2();
 		
-		
+		SerialRead3 sr3 = new SerialRead3();
+		sr3.SerialRead3();
 		
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		textPanel.add(new JLabel("Este é um Java applet"));
 		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
 		textPanel.add(new JLabel("" + new Random().nextInt()));
+		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
+		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
+		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
+		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
 		this.getContentPane().add(textPanel);
-		
-		JavaDummyApplet.this.timeLabel.setText("Teste1");
-		JavaDummyApplet.this.messages.setText("Teste2");
-		JavaDummyApplet.this.messages.setText("Recebido:");
+	
 	}
 	
 
-	/*
+	
 	private void startWebcam(){
 		final TimerTask timerTask = new TimerTask(){
 			public void run() {
@@ -123,9 +124,9 @@ public class JavaDummyApplet extends WebLabApplet {
 	}
 	
 	
-	*/
 	
-	/*
+	
+	
 	private ImageIcon loadImage(final String path) {
 	    final int MAX_IMAGE_SIZE = 1024 * 1024;
 	    
@@ -158,11 +159,11 @@ public class JavaDummyApplet extends WebLabApplet {
         }
         return new ImageIcon(Toolkit.getDefaultToolkit().createImage(buf));
 	}
-	*/
+	
 	
 	public void startInteraction() {
 		this.getContentPane().add(this.experimentPanel);
-		//this.startWebcam();
+		this.startWebcam();
 		this.messages.setText("Interaction started");
 		this.repaint();
 	}
@@ -183,8 +184,8 @@ public class JavaDummyApplet extends WebLabApplet {
 	}
 	
 	public void end() {
-		//if(this.webcamTimer != null)
-		//	this.webcamTimer.cancel();
+		if(this.webcamTimer != null)
+			this.webcamTimer.cancel();
 		if(this.expirationTimer != null)
 			this.expirationTimer.cancel();
 	}	
