@@ -69,13 +69,19 @@ public class JavaDummyApplet extends WebLabApplet {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		/**
-		for(int i = 0; i < 5; ++i){
-			final JButton button = new JButton("But. " + i);
-			final Command command = new  PulseCommand(i, true);
+		
+		//for(int i = 0; i < 5; ++i){
+			//final JButton button = new JButton("But. " + i);
+		//	final Command command = new  PulseCommand(i, true);
+			
+			final JButton button = new JButton("Receber Dados");
 			button.addActionListener(new ActionListener(){
+				
+				
 				public void actionPerformed(ActionEvent e) {
+					/**
 					JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
+						
 						public void onSuccess(ResponseCommand response) {
 							JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
 						}
@@ -84,11 +90,16 @@ public class JavaDummyApplet extends WebLabApplet {
 							JavaDummyApplet.this.messages.setText("Erro: " + message);
 						}
 					});
+					**/
+					
+					SerialRead3 sr3 = new SerialRead3();
+					sr3.SerialRead3();
+					
 				}
 			});
 			buttonsPanel.add(button);
-		}
-		**/
+		//}
+
 		
 		
 		final JPanel textPanel = new JPanel();
@@ -133,8 +144,8 @@ public class JavaDummyApplet extends WebLabApplet {
             	
             	byte[] buffer = serialPort.readBytes(100);//Read 10 bytes from serial port
             	String source2 = new String(buffer);
-                System.out.println(source2);
-                
+                //System.out.println(source2);
+            	JavaDummyApplet.this.messages.setText("Recebido:" + source2);
             	
             }
             serialPort.closePort();//Close serial port
