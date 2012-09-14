@@ -96,10 +96,6 @@ public class JavaDummyApplet extends WebLabApplet {
 		textPanel.add(new JLabel("Este é um Java applet"));
 		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
 		textPanel.add(new JLabel("" + new Random().nextInt()));
-		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
-		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
-		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
-		textPanel.add(new JLabel("Numero randomico para saber que o applet nao zzzzzzzzzfoi reiniciado:"));
 		this.getContentPane().add(textPanel);
 	
 	}
@@ -125,7 +121,7 @@ public class JavaDummyApplet extends WebLabApplet {
 	
 	
 	public void SerialRead3() {
-	/**
+	
         SerialPort serialPort = new SerialPort("COM3");
         try {
             serialPort.openPort();//Open serial port
@@ -146,7 +142,7 @@ public class JavaDummyApplet extends WebLabApplet {
         catch (SerialPortException ex) {
             System.out.println(ex);
         }
-        **/
+        
     }
 	
 	
@@ -199,7 +195,7 @@ public class JavaDummyApplet extends WebLabApplet {
 				final int current = Integer.parseInt(JavaDummyApplet.this.timeLabel.getText());
 				if(current == 0)
 					JavaDummyApplet.this.getBoardController().onClean();
-				//JavaDummyApplet.this.timeLabel.setText("" + (current - 1));
+				JavaDummyApplet.this.timeLabel.setText("" + (current - 1));
 			}
 		};
 		this.expirationTimer = new Timer();
