@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/weblab/server/experiments/managed/libs/client/java/libs/plugin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/core.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/RXTXcomm.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/serial.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/examples/SimpleRead/applet/SimpleRead.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Downloads/jSSC-0.9.0-Release/jSSC-0.9.0-Release/jssc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/jssc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/plugin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/serial.jar"/>
+	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/testeLed/libs/SimpleRead.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
