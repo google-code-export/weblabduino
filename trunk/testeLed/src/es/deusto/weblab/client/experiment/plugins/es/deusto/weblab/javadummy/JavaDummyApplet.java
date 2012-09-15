@@ -133,7 +133,7 @@ public class JavaDummyApplet extends WebLabApplet {
 	
 	public void SerialRead3() {
 	
-        SerialPort serialPort = new SerialPort("COM3");
+        SerialPort serialPort = new SerialPort("COM6");
         try {
             serialPort.openPort();//Open serial port
             serialPort.setParams(9600, 8, 1, 0);//Set params.
