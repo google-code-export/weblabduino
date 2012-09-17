@@ -60,10 +60,11 @@ public class JavaDummyApplet extends WebLabApplet {
 		messagesPanel.add(this.timeLabel);
 		messagesPanel.add(this.messages);
 		
-		
 		final JPanel buttonsPanel = new JPanel();
-		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
+		final JButton button = new JButton("Receber Dados");
+		buttonsPanel.add(button);
 		
 		
 		final JPanel textPanel = new JPanel();
