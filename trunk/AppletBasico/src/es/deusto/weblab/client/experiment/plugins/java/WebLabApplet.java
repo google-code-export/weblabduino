@@ -49,4 +49,5 @@ public abstract class WebLabApplet extends JApplet {
 	public void startInteraction() {}
 	
 	public void end() {}
+	
 }

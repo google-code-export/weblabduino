@@ -17,6 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.deusto.weblab.client.experiment.plugins.es.deusto.weblab.javadummy.commands.PulseCommand;
@@ -71,15 +72,25 @@ public class JavaDummyApplet extends WebLabApplet {
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		textPanel.add(new JLabel("Este é um Java applet"));
 		this.getContentPane().add(textPanel);
-	
-	}
-	
+		
+			
+		button.addActionListener(new ActionListener(){
+				
+			public void actionPerformed(ActionEvent e) {
+						
+							JavaDummyApplet.this.messages.setText("Entrou no Action !");
+							JavaDummyApplet.this.SerialRead3();
 
-
-	
+				}
+			});
+		
+		
+		
+		}
+		
 	public void SerialRead3() {
 	
-        SerialPort serialPort = new SerialPort("COM6");
+        SerialPort serialPort = new SerialPort("COM3");
         try {
             serialPort.openPort();//Open serial port
             serialPort.setParams(9600, 8, 1, 0);//Set params.
@@ -91,7 +102,8 @@ public class JavaDummyApplet extends WebLabApplet {
             	byte[] buffer = serialPort.readBytes(100);//Read 10 bytes from serial port
             	String source2 = new String(buffer);
                 //System.out.println(source2);
-            	JavaDummyApplet.this.messages.setText("Recebido:" + source2);
+            	JavaDummyApplet.this.messages.setText("Recebendo Serial");
+            	JOptionPane.showMessageDialog(null, source2);
             	
             }
             serialPort.closePort();//Close serial port
@@ -104,9 +116,11 @@ public class JavaDummyApplet extends WebLabApplet {
 	
 	
 	public void startInteraction() {
+		
 		this.getContentPane().add(this.experimentPanel);
 		this.messages.setText("Interaction started");
 		this.repaint();
+
 	}
 	
 	public void setTime(int time) {
