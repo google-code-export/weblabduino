@@ -6,7 +6,7 @@ import jssc.SerialPortException;
 public class SerialRead3 {
 
     public void SerialRead3() {
-        SerialPort serialPort = new SerialPort("COM6");
+        SerialPort serialPort = new SerialPort("COM3");
         try {
             serialPort.openPort();//Open serial port
             serialPort.setParams(9600, 8, 1, 0);//Set params.
