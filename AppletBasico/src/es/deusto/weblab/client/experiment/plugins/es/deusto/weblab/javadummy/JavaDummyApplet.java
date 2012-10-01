@@ -32,15 +32,13 @@ import jssc.SerialPort;
 import jssc.SerialPortException;
 
 public class JavaDummyApplet extends WebLabApplet {
-	private static final long serialVersionUID = 1L;
-
-	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
-	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/logo.png";
+	private static final long serialVersionUID = 1L;	
 	
 	private final JLabel timeLabel;
 	private Timer expirationTimer = null;
 	private final JLabel messages;
 	private final JPanel experimentPanel;
+	public static SerialPort serialPort = null ; 
 
 	public JavaDummyApplet(){
 		
@@ -77,9 +75,11 @@ public class JavaDummyApplet extends WebLabApplet {
 		button.addActionListener(new ActionListener(){
 				
 			public void actionPerformed(ActionEvent e) {
-						
+				
+								
 							JavaDummyApplet.this.messages.setText("Entrou no Action !");
 							JavaDummyApplet.this.SerialRead3();
+							//JavaDummyApplet.this.teste();
 
 				}
 			});
@@ -87,12 +87,29 @@ public class JavaDummyApplet extends WebLabApplet {
 		
 		
 		}
+	
+	public void teste(){
+		
+		System.out.println("Testando funcao !!!");
+		JOptionPane.showMessageDialog(null, "Testando funcao !!!");
+	}
 		
 	public void SerialRead3() {
-	
-        SerialPort serialPort = new SerialPort("COM3");
+		
+		JOptionPane.showMessageDialog(null, "Entrou no SerialRead3");
+
+		if ( serialPort == null ){
+        serialPort = new SerialPort("COM3");
+		}
+        
+		JOptionPane.showMessageDialog(null, "Testou se a variavel serialPort é nula ");
+
+		
         try {
+        	
+    		JOptionPane.showMessageDialog(null, "Abrindo porta COM ");
             serialPort.openPort();//Open serial port
+    		JOptionPane.showMessageDialog(null, "Abriu porta COM ");
             serialPort.setParams(9600, 8, 1, 0);//Set params.
             
             boolean b = true;
@@ -130,7 +147,6 @@ public class JavaDummyApplet extends WebLabApplet {
 			public void run() {
 				final int current = Integer.parseInt(JavaDummyApplet.this.timeLabel.getText());
 				if(current == 0)
-					//JavaDummyApplet.this.getBoardController().onClean();
 				JavaDummyApplet.this.timeLabel.setText("" + (current - 1));
 			}
 		};
