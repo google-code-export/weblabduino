@@ -24,34 +24,38 @@ import es.deusto.weblab.client.experiment.plugins.es.deusto.weblab.javadummy.com
 import es.deusto.weblab.client.experiment.plugins.java.Command;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
 import es.deusto.weblab.client.experiment.plugins.java.ICommandCallback;
+import es.deusto.weblab.client.experiment.plugins.java.MicTx;
 import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
-import es.deusto.weblab.client.experiment.plugins.java.SerialRead3;
-import es.deusto.weblab.client.experiment.plugins.java.SimpleRead2;
+import es.deusto.weblab.client.experiment.plugins.java.SocketClient;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
-import jssc.SerialPort;
-import jssc.SerialPortException;
 
 public class JavaDummyApplet extends WebLabApplet {
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
+
+	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
+	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/logo.png";
 	
+	private final JPanel webcamPanel;
 	private final JLabel timeLabel;
+	private Timer webcamTimer = null;
 	private Timer expirationTimer = null;
-	private final JLabel messages;
+	public final JLabel messages;
 	private final JPanel experimentPanel;
-	public static SerialPort serialPort = null ; 
 
 	public JavaDummyApplet(){
 		
 		this.experimentPanel = new JPanel();
 		this.experimentPanel.setLayout(new BoxLayout(this.experimentPanel, BoxLayout.Y_AXIS));
 		
-	
+		this.webcamPanel = new JPanel();
+		this.experimentPanel.add(this.webcamPanel);
+		
 		final JPanel messagesPanel = new JPanel();
 		messagesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(messagesPanel);
 		
 		this.timeLabel = new JLabel("<time>");
-		this.timeLabel.setForeground(Color.green);
+		this.timeLabel.setForeground(Color.red);
 		
 		this.messages = new JLabel();
 		this.messages.setForeground(Color.blue);
@@ -60,84 +64,131 @@ public class JavaDummyApplet extends WebLabApplet {
 		messagesPanel.add(this.messages);
 		
 		final JPanel buttonsPanel = new JPanel();
-        buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
-		final JButton button = new JButton("Receber Dados");
+		
+		/*
+		for(int i = 0; i < 5; ++i){
+			final JButton button = new JButton("But. " + i);
+			final Command command = new  PulseCommand(i, true);
+			button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
+						public void onSuccess(ResponseCommand response) {
+							JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
+						}
+						
+						public void onFailure(String message) {
+							JavaDummyApplet.this.messages.setText("ERRO: " + message);
+						}
+					});
+				}
+			});
+			buttonsPanel.add(button);
+		}
+		*/
+		
+		
+		final JButton button = new JButton("Voz.class");		
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+				JavaDummyApplet.this.messages.setText("Ativando voz !");
+					/* Executar o arquivo MicServer.jar que irá receber 
+					 * os comandos de voz  
+					 */
+				
+					//colocar um delay até que o servidor de voz esteja pronto
+				
+					//Iniciar a classe de implementacao para captura do microfone (MicTx.java)
+					MicTx tx = new MicTx();
+					tx.captureAudio();
+
+			}
+		});
+		
+		
+		final JButton buttonETH = new JButton("Dados.class");
+		
+		buttonETH.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+				JavaDummyApplet.this.messages.setText("Capturando dados !");
+				//Teste Ethernet Shield
+				SocketClient ce = new SocketClient();
+				ce.main(null);
+					
+			}
+		});
+		
 		buttonsPanel.add(button);
+		buttonsPanel.add(buttonETH);
 		
 		
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		textPanel.add(new JLabel("Este � um Java applet"));
+		textPanel.add(new JLabel("Este é um JavaApplet"));
+		textPanel.add(new JLabel("Número aleatório para saber que o applet não foi reiniciado:"));
+		textPanel.add(new JLabel("" + new Random().nextInt()));
 		this.getContentPane().add(textPanel);
-		
-			
-		button.addActionListener(new ActionListener(){
-				
-			public void actionPerformed(ActionEvent e) {
-				
-								
-							JavaDummyApplet.this.messages.setText("Entrou no Action !");
-							JavaDummyApplet.this.SerialRead3();
-							//JavaDummyApplet.this.teste();
-
-				}
-			});
-		
-		
-		
-		}
-	
-	public void teste(){
-		
-		System.out.println("Testando funcao !!!");
-		JOptionPane.showMessageDialog(null, "Testando funcao !!!");
 	}
-		
-	public void SerialRead3() {
-		
-		JOptionPane.showMessageDialog(null, "Entrou no SerialRead3");
-
-		if ( serialPort == null ){
-        serialPort = new SerialPort("COM3");
+	
+	private void startWebcam(){
+		final TimerTask timerTask = new TimerTask(){
+			public void run() {
+				final String moduleURL = JavaDummyApplet.this.getConfigurationManager().getProperty(ConfigurationManager.GWT_MODULE_BASE_URL);
+				final String path = moduleURL + JavaDummyApplet.this.getConfigurationManager().getProperty(JavaDummyApplet.WEBCAM_IMAGE_URL_PROPERTY_NAME, JavaDummyApplet.DEFAULT_WEBCAM_IMAGE_URL);
+				final ImageIcon image = JavaDummyApplet.this.loadImage(path);
+				
+				JavaDummyApplet.this.webcamPanel.removeAll();
+				JavaDummyApplet.this.webcamPanel.add(new JLabel(image));
+				JavaDummyApplet.this.webcamPanel.repaint();
+				//JavaDummyApplet.this.messages.setText("<imagem atualizada>");
+			}
+		};
+		this.webcamTimer = new Timer();
+		this.webcamTimer.schedule(timerTask, 0, 3000);
+	}
+	
+	private ImageIcon loadImage(final String path) {
+	    final int MAX_IMAGE_SIZE = 1024 * 1024;
+	    
+	    final URL url;
+	    try {
+			url = new URL(path);
+		} catch (MalformedURLException e) {
+            System.err.println("Malformed URL Exception: " + e.getMessage());
+            e.printStackTrace();
+			return null;
 		}
-        
-		JOptionPane.showMessageDialog(null, "Testou se a variavel serialPort � nula ");
-
 		
+	    final BufferedInputStream imgStream;
+		try {
+			imgStream = new BufferedInputStream(url.openStream());
+		} catch (IOException e) {
+            System.err.println("Couldn't open stream: " + e.getMessage());
+            e.printStackTrace();
+			return null;
+		}
+	    
+        final byte buf[] = new byte[MAX_IMAGE_SIZE];
         try {
-        	
-    		JOptionPane.showMessageDialog(null, "Abrindo porta COM ");
-            serialPort.openPort();//Open serial port
-    		JOptionPane.showMessageDialog(null, "Abriu porta COM ");
-            serialPort.setParams(9600, 8, 1, 0);//Set params.
-            
-            boolean b = true;
-            
-            while (b=true){
-            	
-            	byte[] buffer = serialPort.readBytes(100);//Read 10 bytes from serial port
-            	String source2 = new String(buffer);
-                //System.out.println(source2);
-            	JavaDummyApplet.this.messages.setText("Recebendo Serial");
-            	JOptionPane.showMessageDialog(null, source2);
-            	
-            }
-            serialPort.closePort();//Close serial port
+            imgStream.read(buf);
+            imgStream.close();
+        } catch (java.io.IOException ioe) {
+            System.err.println("Couldn't read stream from file: " + ioe.getMessage());
+            ioe.printStackTrace();
+            return null;
         }
-        catch (SerialPortException ex) {
-            System.out.println(ex);
-        }
-        
-    }
+        return new ImageIcon(Toolkit.getDefaultToolkit().createImage(buf));
+	}
 	
 	
 	public void startInteraction() {
-		
 		this.getContentPane().add(this.experimentPanel);
-		this.messages.setText("Interaction started");
+		this.startWebcam();
+		this.messages.setText("Interação iniciada !");
 		this.repaint();
-
 	}
 	
 	public void setTime(int time) {
@@ -147,6 +198,7 @@ public class JavaDummyApplet extends WebLabApplet {
 			public void run() {
 				final int current = Integer.parseInt(JavaDummyApplet.this.timeLabel.getText());
 				if(current == 0)
+					JavaDummyApplet.this.getBoardController().onClean();
 				JavaDummyApplet.this.timeLabel.setText("" + (current - 1));
 			}
 		};
@@ -155,7 +207,9 @@ public class JavaDummyApplet extends WebLabApplet {
 	}
 	
 	public void end() {
-				if(this.expirationTimer != null)
+		if(this.webcamTimer != null)
+			this.webcamTimer.cancel();
+		if(this.expirationTimer != null)
 			this.expirationTimer.cancel();
 	}	
 }
