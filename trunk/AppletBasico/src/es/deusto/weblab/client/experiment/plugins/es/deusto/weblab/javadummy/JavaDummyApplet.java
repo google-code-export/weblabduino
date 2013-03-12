@@ -67,7 +67,6 @@ public class JavaDummyApplet extends WebLabApplet {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		/*
 		for(int i = 0; i < 5; ++i){
 			final JButton button = new JButton("But. " + i);
 			final Command command = new  PulseCommand(i, true);
@@ -86,50 +85,8 @@ public class JavaDummyApplet extends WebLabApplet {
 			});
 			buttonsPanel.add(button);
 		}
-		*/
 		
-		
-		final JButton button = new JButton("Voz.class");		
-		button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				
-				JavaDummyApplet.this.messages.setText("Ativando voz !");
-					/* Executar o arquivo MicServer.jar que irá receber 
-					 * os comandos de voz  
-					 */
-				
-					//colocar um delay até que o servidor de voz esteja pronto
-				
-					//Iniciar a classe de implementacao para captura do microfone (MicTx.java)
-					MicTx tx = new MicTx();
-					tx.captureAudio();
 
-			}
-		});
-		
-		
-		final JButton buttonETH = new JButton("Dados.class");
-		
-		buttonETH.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				
-				JavaDummyApplet.this.messages.setText("Capturando dados !");
-				//Teste Ethernet Shield
-				SocketClient ce = new SocketClient();
-				try {
-					SocketClient.main(null);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-					
-			}
-		});
-		
-		buttonsPanel.add(button);
-		buttonsPanel.add(buttonETH);
-		
-		
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		textPanel.add(new JLabel("Este é um JavaApplet"));
