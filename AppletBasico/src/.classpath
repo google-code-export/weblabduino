@@ -2,11 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/core.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/jssc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/plugin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/RXTXcomm.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/serial.jar"/>
-	<classpathentry kind="lib" path="C:/Users/webduino/Desktop/weblabduino/libs/SimpleRead.jar"/>
+	<classpathentry kind="lib" path="/home/webduino/svn/AppletBasico/libs/plugin.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

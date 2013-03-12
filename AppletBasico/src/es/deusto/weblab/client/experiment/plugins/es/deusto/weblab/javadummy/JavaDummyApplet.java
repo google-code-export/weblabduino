@@ -116,7 +116,12 @@ public class JavaDummyApplet extends WebLabApplet {
 				JavaDummyApplet.this.messages.setText("Capturando dados !");
 				//Teste Ethernet Shield
 				SocketClient ce = new SocketClient();
-				ce.main(null);
+				try {
+					SocketClient.main(null);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 					
 			}
 		});
