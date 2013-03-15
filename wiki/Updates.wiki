@@ -1,9 +1,0 @@
-Administrando o Banco de dados do weblabdeusto:
-
-Executar launch.py
-
-Adicionar algum usuario pelos metodos abaixo:
-
-Add User with Db AtuhType
-Add User with Ldap AtuhType
-Add User with OpenID AtuhType
