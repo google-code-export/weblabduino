@@ -46,6 +46,7 @@ void checkForClient(){
   EthernetClient client = server.available();
 
   if (client) {
+        Serial.println("Cliente Conectado");
         String clientMsg ="";
 
 
@@ -62,14 +63,23 @@ void checkForClient(){
           client.println("Content-Type: text/html");
           client.println();
           sentHeader = true;
+          reading = true ;
         }
         
-        char c = client.read();
-        clientMsg+=c;//store the recieved chracters in a string
         
+        char c = client.read();
+        Serial.println(c);
+        
+        if(c != "2" | "3"){
+        client.close();
+        }
+        
+        
+        clientMsg+=c;//store the recieved chracters in a string
+
 
         if(reading){
-          Serial.print(clientMsg);
+          Serial.println(clientMsg);
 
            switch (c) {
             case '2':
@@ -106,7 +116,6 @@ void triggerPin(int pin, EthernetClient client){
 //blink a pin - Client needed just for HTML output purposes.  
   client.print("Turning on pin ");
   client.println(pin);
-
 
   digitalWrite(pin, HIGH);
   delay(250);
