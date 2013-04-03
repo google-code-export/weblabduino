@@ -70,10 +70,6 @@ void checkForClient(){
         char c = client.read();
         Serial.println(c);
         
-        if(c != "2" | "3"){
-        client.close();
-        }
-        
         
         clientMsg+=c;//store the recieved chracters in a string
 
@@ -84,7 +80,7 @@ void checkForClient(){
            switch (c) {
             case '2':
               //add code here to trigger on 2
-              triggerPin(2, client);
+              blinkPin(2, client);
               client.println("fim");
               client.stop(); // close the connection:
               break;
@@ -112,9 +108,10 @@ void checkForClient(){
 
 }
 
-void triggerPin(int pin, EthernetClient client){
+void blinkPin(int pin, EthernetClient client){
 //blink a pin - Client needed just for HTML output purposes.  
-  client.print("Turning on pin ");
+  
+  client.print("Blinking on pin ");
   client.println(pin);
 
   digitalWrite(pin, HIGH);
@@ -124,8 +121,28 @@ void triggerPin(int pin, EthernetClient client){
 
 }
 
+void onPin(int pin, EthernetClient client){
+//on a pin - Client needed just for HTML output purposes.  
+  client.print("Turning on pin ");
+  client.println(pin);
+
+  digitalWrite(pin, HIGH);
+  delay(10);
+
+}
+
+void offPin(int pin, EthernetClient client){
+//off a pin - Client needed just for HTML output purposes.  
+  client.print("Turning off pin ");
+  client.println(pin);
+
+  digitalWrite(pin, LOW);
+  delay(10);
+
+}
+
 void readPin(int pin, EthernetClient client){
-//blink a pin - Client needed just for HTML output purposes.  
+//read a pin - Client needed just for HTML output purposes.  
     client.print("analog input ");
     client.print(pin);
     client.print(" is ");
