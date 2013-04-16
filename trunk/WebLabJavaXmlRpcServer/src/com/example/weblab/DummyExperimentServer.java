@@ -2,6 +2,7 @@ package com.example.weblab;
 
 import java.io.File;
 
+
 import es.deusto.weblab.experimentservers.ExperimentServer;
 import es.deusto.weblab.experimentservers.exceptions.ExperimentServerInstantiationException;
 import es.deusto.weblab.experimentservers.exceptions.WebLabException;
@@ -24,6 +25,18 @@ public class DummyExperimentServer extends ExperimentServer {
 	
 	public String sendCommand(String command)  throws WebLabException {
 		System.out.println("I'm at send_command: " + command);
+		
+
+		ArduinoEthernetComm aec = new ArduinoEthernetComm();
+		
+		try {
+			System.out.println("Dados Arduino => " + aec.ArduinoEthernetComm("192.168.1.177", 80, "2"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return "ok";
 	}
 	
