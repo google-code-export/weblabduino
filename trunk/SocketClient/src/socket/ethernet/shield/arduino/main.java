@@ -10,7 +10,7 @@ public class main {
 
 		ArduinoEthernetComm aec = new ArduinoEthernetComm();
 		
-		System.out.println("Dados Arduino => " + aec.ArduinoEthernetComm("192.168.1.177", 80, " "));
+		System.out.println("Dados Arduino => " + aec.ArduinoEthernetComm("192.168.1.177", 80, "2"));
 		
 		
 	}
