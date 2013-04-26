@@ -33,7 +33,7 @@ public class JavaDummyApplet extends WebLabApplet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
-	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/logo.png";
+	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/webcam/espectrofotometro_01.jpg";
 	
 	private final JPanel webcamPanel;
 	private final JLabel timeLabel;
