@@ -36,7 +36,7 @@ public class MicTx {
 	public void captureAudio() {
 		try {
 
-			sock = new Socket("localhost", 500);
+			sock = new Socket("192.168.1.100", 11000);
 
 			out = new BufferedOutputStream(sock.getOutputStream());
 			in = new BufferedInputStream(sock.getInputStream());
