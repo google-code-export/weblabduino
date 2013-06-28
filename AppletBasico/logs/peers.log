@@ -1,0 +1,16 @@
+2013-06-28 17:27:13,614 INFO  [main] starting user agent [myAddress: 192.168.31.167, sipPort: 6060, userpart: 1001, domain: 192.168.10.243]
+2013-06-28 17:27:13,639 INFO  [main] added datagram socket 192.168.31.167:6060/UDP
+2013-06-28 17:27:13,640 INFO  [main] added 192.168.31.167:6060/UDP: net.sourceforge.peers.sip.transport.UdpMessageReceiver@419710 to message receivers
+2013-06-28 17:27:13,682 DEBUG [main] SM z9hG4bKyXU2Yd3e4|INVITE [InviteClientTransactionStateInit -> InviteClientTransactionStateCalling] setState
+2013-06-28 17:27:13,684 DEBUG [Thread-4] ClientTransaction = net.sourceforge.peers.sip.transaction.InviteClientTransaction@15c39c3
+2013-06-28 17:27:13,685 DEBUG [Thread-4] SM z9hG4bKyXU2Yd3e4|INVITE [InviteClientTransactionStateCalling -> InviteClientTransactionStateCompleted] setState
+2013-06-28 17:27:13,710 DEBUG [Thread-4] SM z9hG4bKlANBsHuW7|INVITE [InviteClientTransactionStateInit -> InviteClientTransactionStateCalling] setState
+2013-06-28 17:27:13,712 DEBUG [Thread-4] ClientTransaction = net.sourceforge.peers.sip.transaction.InviteClientTransaction@168cd47
+2013-06-28 17:27:13,712 DEBUG [Thread-4] SM z9hG4bKlANBsHuW7|INVITE [InviteClientTransactionStateCalling -> InviteClientTransactionStateProceeding] setState
+2013-06-28 17:27:13,960 DEBUG [Thread-4] ClientTransaction = net.sourceforge.peers.sip.transaction.InviteClientTransaction@168cd47
+2013-06-28 17:27:13,960 DEBUG [Thread-4] SM z9hG4bKlANBsHuW7|INVITE [InviteClientTransactionStateProceeding -> InviteClientTransactionStateProceeding] setState
+2013-06-28 17:27:13,970 DEBUG [Thread-4] Contact: <sip:1002@192.168.31.167:5060>
+2013-06-28 17:27:13,971 DEBUG [Thread-4] SM Dg1SUoA0-1372451233664@weblabnote01.local|02EnmqO6|as41b68e9e [DialogStateInit -> DialogStateEarly] setState
+2013-06-28 17:27:15,814 DEBUG [Thread-4] ClientTransaction = net.sourceforge.peers.sip.transaction.InviteClientTransaction@168cd47
+2013-06-28 17:27:15,814 DEBUG [Thread-4] SM z9hG4bKlANBsHuW7|INVITE [InviteClientTransactionStateProceeding -> InviteClientTransactionStateCompleted] setState
+2013-06-28 17:27:15,816 DEBUG [Thread-4] SM Dg1SUoA0-1372451233664@weblabnote01.local|02EnmqO6|as41b68e9e [DialogStateEarly -> DialogStateTerminated] setState

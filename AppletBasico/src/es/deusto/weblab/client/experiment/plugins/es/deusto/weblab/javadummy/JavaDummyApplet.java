@@ -20,13 +20,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import net.sourceforge.peers.gui.MainFrame;
+
 import es.deusto.weblab.client.experiment.plugins.es.deusto.weblab.javadummy.commands.PulseCommand;
 import es.deusto.weblab.client.experiment.plugins.java.Command;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
 import es.deusto.weblab.client.experiment.plugins.java.ICommandCallback;
 import es.deusto.weblab.client.experiment.plugins.java.MicTx;
 import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
-import es.deusto.weblab.client.experiment.plugins.java.SocketClient;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
 
 public class JavaDummyApplet extends WebLabApplet {
@@ -67,25 +68,70 @@ public class JavaDummyApplet extends WebLabApplet {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		for(int i = 0; i < 5; ++i){
-			final JButton button = new JButton("But. " + i);
-			final Command command = new  PulseCommand(i, true);
-			button.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e) {
-					JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
-						public void onSuccess(ResponseCommand response) {
-							JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
-						}
-						
-						public void onFailure(String message) {
-							JavaDummyApplet.this.messages.setText("ERRO: " + message);
-						}
-					});
-				}
-			});
-			buttonsPanel.add(button);
-		}
+//		for(int i = 0; i < 5; ++i){
+//			final JButton button = new JButton("But. " + i);
+//			final Command command = new  PulseCommand(i, true);
+//			
+//			button.addActionListener(new ActionListener(){
+//				public void actionPerformed(ActionEvent e) {
+//									
+//					JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
+//						
+//						public void onSuccess(ResponseCommand response) {
+//							JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
+//						}
+//						
+//						public void onFailure(String message) {
+//							JavaDummyApplet.this.messages.setText("ERRO: " + message);
+//						}
+//						
+//					});
+//				}
+//			});
+//			buttonsPanel.add(button);
+//		}
 		
+//		final JButton button = new JButton("Voz !");	
+//		buttonsPanel.add(button);	
+//		
+//		String comando = "Liga Voz";
+//		int num = Integer.parseInt(comando);
+//		
+//	    final Command command = new  PulseCommand(num, true);    
+//	    
+//	    button.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//								
+//				JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
+//					
+//					public void onSuccess(ResponseCommand response) {
+//						JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
+//						
+//						MicTx voice = new MicTx();			
+//						voice.captureAudio();
+//					}
+//					
+//					public void onFailure(String message) {
+//						JavaDummyApplet.this.messages.setText("ERRO: " + message);
+//					}
+//					
+//				});
+//     		}
+//		});
+		
+		final JButton button = new JButton("Voz !");	
+		buttonsPanel.add(button);	
+		
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+				JavaDummyApplet.this.timeLabel.setText("Botão voz !!!!!");
+				
+				App.main(new String[]{});
+					
+     		}
+		});
+
 
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -111,6 +157,13 @@ public class JavaDummyApplet extends WebLabApplet {
 		this.webcamTimer = new Timer();
 		this.webcamTimer.schedule(timerTask, 0, 3000);
 	}
+	
+	private void startVoice(){
+		
+			MicTx voice = new MicTx();			
+			voice.captureAudio();
+	}
+	
 	
 	private ImageIcon loadImage(final String path) {
 	    final int MAX_IMAGE_SIZE = 1024 * 1024;
