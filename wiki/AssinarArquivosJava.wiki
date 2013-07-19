@@ -1,0 +1,28 @@
+#labels Phase-Requirements,Phase-QA
+Criar o arquivo de assinatura pelo comando abaixo:
+
+{{{
+keytool -genkey -alias MyPlugins -keyalg RSA -keystore mykeystore.ks  -validity 10000
+}}}
+
+-genkey: gerar uma chave
+
+-alias: referencia à chave
+
+-keyalg: algoritmo para gerar a chave
+
+-keystore: arquivo para gerar a chave
+
+-validity: tempo para expirar
+
+Adicionar um certificado pelo comando abaixo:
+
+{{{
+keytool -selfcert -keystore mykeystore.ks -alias MyPlugins
+}}}
+
+Para finalmente assinar o .jar execute o comando abaixo:
+
+{{{
+jarsigner -keystore mykeystore.ks WeblabJavaSample.jar MyPlugins
+}}}
