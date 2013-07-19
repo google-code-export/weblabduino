@@ -1,4 +1,4 @@
-#summary Passo para assinar um arquivo jar e acessar recursos externos.
+#summary Passos para assinar um arquivo jar e acessar recursos externos.
 #labels Phase-Requirements,Phase-QA
 
 Criar o arquivo de assinatura pelo comando abaixo:
