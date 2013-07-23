@@ -28,9 +28,9 @@ public class BeanCanApplet
         "@(#)$Id$ Copyright Mexuar Technologies Ltd";
 
   private boolean isStandalone = false;
-  String host = "192.168.31.113";
-  String user = "1003";
-  String pass = "12345";
+  String host = null;
+  String user = null;
+  String pass = null;
   Integer debug;
   BeanCanFrameManager bcf;
   private String audioIn;
@@ -62,19 +62,19 @@ public class BeanCanApplet
   //Initialize the applet
   public void init() {
     try {
-      host = this.getParameter(host, "host", "lef.westhawk.co.uk");
+      host = this.getParameter(host, "host", "192.168.31.239");
     }
     catch (Exception e) {
       e.printStackTrace();
     }
     try {
-      user = this.getParameter(user, "user", "ijax2");
+      user = this.getParameter(user, "user", "1003");
     }
     catch (Exception e) {
       e.printStackTrace();
     }
     try {
-      pass = this.getParameter(pass, "pass", "moofoo");
+      pass = this.getParameter(pass, "pass", "12345");
     }
     catch (Exception e) {
       e.printStackTrace();

@@ -37,9 +37,9 @@ public class BeanCanFrameManager
 
     private Call _ca = null;
     private Friend _peer = null;
-    private String _username = "1003";
-    private String _password = "12345";
-    private String _host = "192.168.31.113";
+    private String _username = "";
+    private String _password = "";
+    private String _host = "";
     private Binder _bind = null;
     private boolean _isApplet = false;
     private AudioInterface _audioBase = null;
@@ -187,7 +187,7 @@ public class BeanCanFrameManager
                 }
                 else {
                     _ca.answer();
-                    act.setText("Hangup");
+                    act.setText("Desligar");
                 }
             }
             else {

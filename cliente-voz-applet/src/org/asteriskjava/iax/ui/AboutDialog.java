@@ -52,8 +52,8 @@ public class AboutDialog extends JDialog {
     jButton1.setText("Ok");
     jButton1.addActionListener(new AboutDialog_jButton1_actionAdapter(this));
     jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-    jLabel1.setText("BeanCan");
-    jLabel2.setText("<html><body><h1>BeanCan</h1><p>A pure java soft phone Copyright <a href=\"www.westhawk.co.uk\">Westhawk " +
+    jLabel1.setText("Servidor de voz");
+    jLabel2.setText("<html><body><h1>WebLabVoz</h1><p>A pure java soft phone Copyright <a href=\"www.westhawk.co.uk\">Westhawk " +
     "Ltd 2005</a></p><p>"+this.getTitle()+"</p></body></html>");
     getContentPane().add(panel1);
     panel1.add(jPanel1, BorderLayout.SOUTH);
