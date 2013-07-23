@@ -79,6 +79,7 @@ public class Faceless
         catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     /**
@@ -126,6 +127,7 @@ public class Faceless
             ex.printStackTrace();
             this.showStatus(ex.getMessage());
         }
+
     }
 
     protected String getVersion() {
@@ -257,6 +259,10 @@ public class Faceless
     public void setUser(String user) {
         _user = user;
     }
+    
+    public String getUser(){
+    	return _user;
+    }
 
     public String getHost()
     {
@@ -337,9 +343,16 @@ public class Faceless
      * @see #registered
      */
     public void register() {
+    	
+    	
         if (_peer == null && _user != null && _pass != null) {
-            ActionListener ans = new ActionListener() {
+        	            
+        	ActionListener ans = new ActionListener() {
+            	
+        		
                 public void actionPerformed(ActionEvent e) {
+                	
+                	
                     if (_bind == null)
                     {
                         try {
@@ -887,6 +900,7 @@ public class Faceless
 
         lab.setText("hi");
         this.getContentPane().add(lab);
+
     }
 
     public String getJavaVersion() {
