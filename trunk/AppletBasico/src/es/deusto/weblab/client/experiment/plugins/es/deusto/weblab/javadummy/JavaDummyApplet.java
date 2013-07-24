@@ -17,32 +17,30 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import net.sourceforge.peers.gui.MainFrame;
-
-import es.deusto.weblab.client.experiment.plugins.es.deusto.weblab.javadummy.commands.PulseCommand;
-import es.deusto.weblab.client.experiment.plugins.java.Command;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
-import es.deusto.weblab.client.experiment.plugins.java.ICommandCallback;
-import es.deusto.weblab.client.experiment.plugins.java.MicTx;
-import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
 
-public class JavaDummyApplet extends WebLabApplet {
+import org.asteriskjava.iax.ui.BeanCan;
+import org.asteriskjava.iax.ui.BeanCanApplet;
+
+public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
 	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/webcam/espectrofotometro_01.jpg";
 	
 	private final JPanel webcamPanel;
-	private final JLabel timeLabel;
+	public final JLabel timeLabel;
 	private Timer webcamTimer = null;
 	private Timer expirationTimer = null;
 	public final JLabel messages;
 	private final JPanel experimentPanel;
-
+	
+	BeanCan bc;
+	
+	
 	public JavaDummyApplet(){
 		
 		this.experimentPanel = new JPanel();
@@ -68,69 +66,9 @@ public class JavaDummyApplet extends WebLabApplet {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-//		for(int i = 0; i < 5; ++i){
-//			final JButton button = new JButton("But. " + i);
-//			final Command command = new  PulseCommand(i, true);
-//			
-//			button.addActionListener(new ActionListener(){
-//				public void actionPerformed(ActionEvent e) {
-//									
-//					JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
-//						
-//						public void onSuccess(ResponseCommand response) {
-//							JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
-//						}
-//						
-//						public void onFailure(String message) {
-//							JavaDummyApplet.this.messages.setText("ERRO: " + message);
-//						}
-//						
-//					});
-//				}
-//			});
-//			buttonsPanel.add(button);
-//		}
-		
-//		final JButton button = new JButton("Voz !");	
-//		buttonsPanel.add(button);	
-//		
-//		String comando = "Liga Voz";
-//		int num = Integer.parseInt(comando);
-//		
-//	    final Command command = new  PulseCommand(num, true);    
-//	    
-//	    button.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e) {
-//								
-//				JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
-//					
-//					public void onSuccess(ResponseCommand response) {
-//						JavaDummyApplet.this.messages.setText("Recebido:" + response.getCommandString());
-//						
-//						MicTx voice = new MicTx();			
-//						voice.captureAudio();
-//					}
-//					
-//					public void onFailure(String message) {
-//						JavaDummyApplet.this.messages.setText("ERRO: " + message);
-//					}
-//					
-//				});
-//     		}
-//		});
-		
-		final JButton button = new JButton("Voz !");	
+		JButton button = new JButton("Voz !");
 		buttonsPanel.add(button);	
-		
-		button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				
-				JavaDummyApplet.this.timeLabel.setText("Botão voz !!!!!");
-				
-				App.main(new String[]{});
-					
-     		}
-		});
+		button.addActionListener(this);
 
 
 		final JPanel textPanel = new JPanel();
@@ -141,6 +79,13 @@ public class JavaDummyApplet extends WebLabApplet {
 		this.getContentPane().add(textPanel);
 	}
 	
+	public void actionPerformed(ActionEvent e) {
+		
+		JavaDummyApplet.this.timeLabel.setText("Comando de voz iniciado !!!!!");
+		bc.main(null);
+
+	}
+
 	private void startWebcam(){
 		final TimerTask timerTask = new TimerTask(){
 			public void run() {
@@ -157,13 +102,6 @@ public class JavaDummyApplet extends WebLabApplet {
 		this.webcamTimer = new Timer();
 		this.webcamTimer.schedule(timerTask, 0, 3000);
 	}
-	
-	private void startVoice(){
-		
-			MicTx voice = new MicTx();			
-			voice.captureAudio();
-	}
-	
 	
 	private ImageIcon loadImage(final String path) {
 	    final int MAX_IMAGE_SIZE = 1024 * 1024;
@@ -197,13 +135,13 @@ public class JavaDummyApplet extends WebLabApplet {
         }
         return new ImageIcon(Toolkit.getDefaultToolkit().createImage(buf));
 	}
-	
-	
+		
 	public void startInteraction() {
 		this.getContentPane().add(this.experimentPanel);
 		this.startWebcam();
 		this.messages.setText("Interação iniciada !");
 		this.repaint();
+
 	}
 	
 	public void setTime(int time) {
@@ -226,5 +164,6 @@ public class JavaDummyApplet extends WebLabApplet {
 			this.webcamTimer.cancel();
 		if(this.expirationTimer != null)
 			this.expirationTimer.cancel();
-	}	
+	}
+
 }
