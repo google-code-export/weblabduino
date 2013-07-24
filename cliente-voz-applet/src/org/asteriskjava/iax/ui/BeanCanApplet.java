@@ -15,6 +15,9 @@ package org.asteriskjava.iax.ui;
 import java.awt.*;
 import java.applet.*;
 import org.asteriskjava.iax.audio.javasound.AudioProperties;
+import org.asteriskjava.iax.protocol.Call;
+import org.asteriskjava.iax.protocol.Friend;
+import org.omg.CORBA._PolicyStub;
 
 /**
  * Swing phone implementation
@@ -176,22 +179,5 @@ public class BeanCanApplet
         "audioOut", "String", ""}
     };
     return pinfo;
-  }
-
-  //Main method
-  public static void main(String[] args) {
-    BeanCanApplet applet = new BeanCanApplet();
-    applet.isStandalone = true;
-    Frame frame;
-    frame = new Frame();
-    frame.setTitle("Applet Frame");
-    frame.add(applet, BorderLayout.CENTER);
-    applet.init();
-    applet.start();
-    frame.setSize(400, 320);
-    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-    frame.setLocation( (d.width - frame.getSize().width) / 2,
-                      (d.height - frame.getSize().height) / 2);
-    frame.setVisible(true);
   }
 }

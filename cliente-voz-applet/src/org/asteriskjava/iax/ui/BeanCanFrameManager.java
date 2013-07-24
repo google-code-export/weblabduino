@@ -60,7 +60,7 @@ public class BeanCanFrameManager
         catch (SocketException ex) {
             status.setText(ex.getMessage());
         }
-
+        
     }
 
     public void stop() {
