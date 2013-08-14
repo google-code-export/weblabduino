@@ -7,7 +7,7 @@ Passos para realizar o update no sistema do WebLab-Deusto
 
 = Details =
 
-Executar o comando (((git pull --progress))) dentro do diretório do Deusto. (/opt/weblabdeusto)
+Executar o comando {{{git pull --progress}}} dentro do diretório do Deusto. (/opt/weblabdeusto)
 
 Executar o script de compilação [/opt/weblabdeusto/client/gwtc.sh]
 
