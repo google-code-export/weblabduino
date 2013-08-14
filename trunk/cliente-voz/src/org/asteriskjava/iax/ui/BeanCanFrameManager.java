@@ -52,13 +52,13 @@ public class BeanCanFrameManager
     }
 
     public void start() {
-        this.show();
+        //this.show();
         _audioBase = new org.asteriskjava.iax.audio.javasound.Audio8k();
         try {
             _bind = new BinderSE(_host, _audioBase);
         }
         catch (SocketException ex) {
-            status.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
         
     }
@@ -68,7 +68,7 @@ public class BeanCanFrameManager
             _bind.stop();
         }
         this.hide();
-        status.setText("Stopped");
+        System.out.println("Stopped");
         _bind = null;
     }
 
@@ -88,7 +88,7 @@ public class BeanCanFrameManager
             _bind.register(_username, _password, this, reg);
         }
         catch (Exception ex) {
-            status.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -102,7 +102,7 @@ public class BeanCanFrameManager
         if (_ca == null) {
             _ca = c;
             Log.debug("_ca == null :" + _ca.getStatus());
-            this.status.setText(c.getStatus());
+            System.out.println(c.getStatus());
             if (_ca.getIsInbound()) {
                 act.setText("Answer");
             }
@@ -112,7 +112,7 @@ public class BeanCanFrameManager
         }
         else {
             Log.debug("_ca != null :" + _ca.getStatus());
-            this.status.setText("Ignoring second call");
+            System.out.println("Ignoring second call");
         }
     }
 
@@ -124,7 +124,7 @@ public class BeanCanFrameManager
      */
     public void registered(Friend f, boolean s) {
         _peer = f;
-        this.status.setText(_peer.getStatus());
+        System.out.println(_peer.getStatus());
     }
 
     /**
@@ -134,7 +134,7 @@ public class BeanCanFrameManager
      */
     public void hungUp(Call c) {
         _ca = null;
-        status.setText("idle");
+        System.out.println("idle");
         act.setText("Call");
     }
 
@@ -144,7 +144,7 @@ public class BeanCanFrameManager
      * @param c Call
      */
     public void ringing(Call c) {
-        status.setText("Ringing");
+        System.out.println("Ringing");
     }
 
     /**
@@ -155,7 +155,7 @@ public class BeanCanFrameManager
      * @see ProtocolEventListener#answered(Call)
      */
     public void answered(Call c) {
-        status.setText("Answered " + c.isAnswered());
+        System.out.println("Answered " + c.isAnswered());
     }
 
     /**
@@ -213,7 +213,7 @@ public class BeanCanFrameManager
         else {
             String t = e.getActionCommand();
             _ca.sendDTMF(t.charAt(0));
-            status.setText("sent dtmf " + t);
+            System.out.println("sent dtmf " + t);
         }
     }
 
@@ -280,3 +280,4 @@ public class BeanCanFrameManager
     }
 
 }
+
