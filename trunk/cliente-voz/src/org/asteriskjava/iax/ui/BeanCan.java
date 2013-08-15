@@ -26,7 +26,7 @@ public class BeanCan {
 
 	private static final String argU = "1003"; 
 	private static final String argP = "12345"; 
-	private static final String argH = "192.168.31.145"; 
+	private static final String argH = "192.168.30.177"; 
 	
 	private static final String     version_id =
         "@(#)$Id$ Copyright Mexuar Technologies Ltd";
