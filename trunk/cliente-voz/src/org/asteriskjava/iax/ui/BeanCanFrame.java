@@ -33,7 +33,6 @@ public class BeanCanFrame extends JFrame {
   JMenu jMenuFile = new JMenu();
   JMenuItem jMenuFileExit = new JMenuItem();
   JMenu jMenuHelp = new JMenu();
-  JMenuItem jMenuHelpAbout = new JMenuItem();
   BorderLayout borderLayout1 = new BorderLayout();
   JPanel jPanel1 = new JPanel();
   JPanel jPanel2 = new JPanel();
@@ -88,10 +87,8 @@ public class BeanCanFrame extends JFrame {
     jMenuFileExit.setText("Exit");
     jMenuFileExit.addActionListener(new BeanCanFrame_jMenuFileExit_ActionAdapter(this));
     jMenuHelp.setText("Help");
-    jMenuHelpAbout.setText("About");
-    jMenuHelpAbout.addActionListener(new BeanCanFrame_jMenuHelpAbout_ActionAdapter(this));
     jPanel1.setLayout(borderLayout2);
-    dialString.setText("1004");
+    dialString.setText("");
     dialString.addActionListener(new BeanCanFrame_dialString_actionAdapter(this));
     jPanel3.setLayout(gridLayout1);
     gridLayout1.setColumns(3);
@@ -138,7 +135,6 @@ public class BeanCanFrame extends JFrame {
     jPanel7.setLayout(borderLayout4);
     jPanel6.setLayout(borderLayout5);
     jMenuFile.add(jMenuFileExit);
-    jMenuHelp.add(jMenuHelpAbout);
     jMenuBar1.add(jMenuFile);
     jMenuBar1.add(jMenuHelp);
     contentPane.add(jPanel1, BorderLayout.CENTER);
@@ -177,14 +173,6 @@ public class BeanCanFrame extends JFrame {
     }
   }
 
-  //Help | About action performed
-  public void jMenuHelpAbout_actionPerformed(ActionEvent e) {
-    if (_about == null){
-      _about = new AboutDialog(this, this.version_id, false);
-    }
-    _about.show();
-  }
-
   //Overridden so we can exit when window is closed
   protected void processWindowEvent(WindowEvent e) {
     super.processWindowEvent(e);
@@ -192,7 +180,6 @@ public class BeanCanFrame extends JFrame {
       jMenuFileExit_actionPerformed(null);
     }
   }
-
 
   void button_action(ActionEvent e) {
     String t = e.getActionCommand();
@@ -231,16 +218,6 @@ class BeanCanFrame_jMenuFileExit_ActionAdapter implements ActionListener {
   }
 }
 
-class BeanCanFrame_jMenuHelpAbout_ActionAdapter implements ActionListener {
-  BeanCanFrame adaptee;
-
-  BeanCanFrame_jMenuHelpAbout_ActionAdapter(BeanCanFrame adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuHelpAbout_actionPerformed(e);
-  }
-}
 
 class BeanCanFrame_jButton1_actionAdapter implements java.awt.event.ActionListener {
   BeanCanFrame adaptee;
