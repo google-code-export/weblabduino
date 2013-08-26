@@ -7,7 +7,12 @@ import org.asteriskjava.iax.protocol.Log;
 import org.asteriskjava.iax.protocol.ProtocolControlFrame;
 
 public class main {
-
+	
+	static final String _host = "192.168.30.177" ;
+	static final String _username = "1003" ;
+	static final String _password = "12345" ;
+	static final String _exp = "1004" ;
+	
 	/**
 	 * @param args
 	 */
@@ -17,15 +22,17 @@ public class main {
 		 
 	    AudioProperties.loadFromFile("audio.properties");
 		
-		BeanCanFrameManager bcfm = new BeanCanFrameManager(false,Log.DEBUG,"");
+		BeanCanFrameManager frameManager = new BeanCanFrameManager(false,Log.DEBUG,"");
 	
-		if(bcfm != null){
+		if(frameManager != null){
 			
-			bcfm.set_host("192.168.30.177");
-			bcfm.set_username("1003");
-			bcfm.set_password("12345");
-			bcfm.register();
-			bcfm.act.doClick();
+			frameManager.set_host(_host);
+			frameManager.set_username(_username);
+			frameManager.set_password(_password);
+			frameManager.register();
+			frameManager.dialString.setText(_exp);
+			frameManager.act.doClick();
+
 		}
 
 	}

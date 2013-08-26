@@ -13,6 +13,7 @@
 
 package org.asteriskjava.iax.ui;
 
+import java.io.Closeable;
 import java.net.*;
 
 import java.awt.event.*;
@@ -64,6 +65,7 @@ public class BeanCanFrameManager
     }
 
     public void stop() {
+    
         if (_bind != null) {
             _bind.stop();
         }
@@ -221,7 +223,6 @@ public class BeanCanFrameManager
 
     void clear_actionPerformed(ActionEvent e) {
         dialString.setText("");
-        System.out.println("Limpou");
     }
 
     public String get_host() {
