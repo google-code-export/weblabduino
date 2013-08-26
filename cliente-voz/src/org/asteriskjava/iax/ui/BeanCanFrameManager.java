@@ -30,6 +30,7 @@ import org.asteriskjava.iax.audio.AudioInterface;
  */
 
 public class BeanCanFrameManager
+    extends BeanCanFrame
     implements ProtocolEventListener, CallManager {
     private static final String version_id =
         "@(#)$Id$ Copyright Mexuar Technologies Ltd";
@@ -39,7 +40,6 @@ public class BeanCanFrameManager
     private String _username = "";
     private String _password = "";
     private String _host = "";
-    private String _num = "1004";
     private Binder _bind = null;
     private boolean _isApplet = false;
     private AudioInterface _audioBase = null;
@@ -52,22 +52,23 @@ public class BeanCanFrameManager
     }
 
     public void start() {
-        //this.show();
+       // this.show();
         _audioBase = new org.asteriskjava.iax.audio.javasound.Audio8k();
         try {
             _bind = new BinderSE(_host, _audioBase);
         }
         catch (SocketException ex) {
-            System.out.println(ex.getMessage());
+            status.setText(ex.getMessage());
         }
-        
+
     }
 
     public void stop() {
         if (_bind != null) {
             _bind.stop();
         }
-        System.out.println("Stopped");
+        this.hide();
+        status.setText("Stopped");
         _bind = null;
     }
 
@@ -87,7 +88,7 @@ public class BeanCanFrameManager
             _bind.register(_username, _password, this, reg);
         }
         catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            status.setText(ex.getMessage());
         }
     }
 
@@ -101,17 +102,17 @@ public class BeanCanFrameManager
         if (_ca == null) {
             _ca = c;
             Log.debug("_ca == null :" + _ca.getStatus());
-            System.out.println(c.getStatus());
+            this.status.setText(c.getStatus());
             if (_ca.getIsInbound()) {
-                System.out.println("Answer");
+                act.setText("Answer");
             }
             else {
-                System.out.println("Hangup");
+                act.setText("Hangup");
             }
         }
         else {
             Log.debug("_ca != null :" + _ca.getStatus());
-            System.out.println("Ignoring second call");
+            this.status.setText("Ignoring second call");
         }
     }
 
@@ -123,7 +124,7 @@ public class BeanCanFrameManager
      */
     public void registered(Friend f, boolean s) {
         _peer = f;
-        System.out.println(_peer.getStatus());
+        this.status.setText(_peer.getStatus());
     }
 
     /**
@@ -133,8 +134,8 @@ public class BeanCanFrameManager
      */
     public void hungUp(Call c) {
         _ca = null;
-        System.out.println("idle");
-        System.out.println("Call");
+        status.setText("idle");
+        act.setText("Call");
     }
 
     /**
@@ -143,7 +144,7 @@ public class BeanCanFrameManager
      * @param c Call
      */
     public void ringing(Call c) {
-        System.out.println("Ringing");
+        status.setText("Ringing");
     }
 
     /**
@@ -154,7 +155,7 @@ public class BeanCanFrameManager
      * @see ProtocolEventListener#answered(Call)
      */
     public void answered(Call c) {
-        System.out.println("Answered " + c.isAnswered());
+        status.setText("Answered " + c.isAnswered());
     }
 
     /**
@@ -173,9 +174,12 @@ public class BeanCanFrameManager
     /**
      */
     void dialString_actionPerformed(ActionEvent e) {
+    	
+    	System.out.println(e);
         if (_ca == null) {
             if (_peer != null) {
-                _peer.newCall(_username, _password, _num, null, null);
+                String num = dialString.getText();
+                _peer.newCall(_username, _password, num, null, null);
             }
         }
         else {
@@ -185,7 +189,7 @@ public class BeanCanFrameManager
                 }
                 else {
                     _ca.answer();
-                    System.out.println("Desligar");
+                    act.setText("Hangup");
                 }
             }
             else {
@@ -194,7 +198,32 @@ public class BeanCanFrameManager
         }
     }
 
-    
+    //File | Exit action performed
+    public void jMenuFileExit_actionPerformed(ActionEvent e) {
+        if (_isApplet) {
+            this.hide();
+        }
+        else {
+            super.jMenuFileExit_actionPerformed(e);
+        }
+    }
+
+    void button_action(ActionEvent e) {
+        if (_ca == null) {
+            super.button_action(e);
+        }
+        else {
+            String t = e.getActionCommand();
+            _ca.sendDTMF(t.charAt(0));
+            status.setText("sent dtmf " + t);
+        }
+    }
+
+    void clear_actionPerformed(ActionEvent e) {
+        dialString.setText("");
+        System.out.println("Limpou");
+    }
+
     public String get_host() {
         return _host;
     }
@@ -254,4 +283,3 @@ public class BeanCanFrameManager
     }
 
 }
-
