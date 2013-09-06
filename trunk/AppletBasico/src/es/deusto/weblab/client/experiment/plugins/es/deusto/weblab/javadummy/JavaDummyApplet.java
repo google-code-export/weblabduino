@@ -19,13 +19,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import es.deusto.weblab.client.experiment.plugins.es.deusto.weblab.javadummy.commands.PulseCommand;
+import es.deusto.weblab.client.experiment.plugins.java.Command;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
+import es.deusto.weblab.client.experiment.plugins.java.ICommandCallback;
+import es.deusto.weblab.client.experiment.plugins.java.ResponseCommand;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
 
 import org.asteriskjava.iax.ui.BeanCan;
 import org.asteriskjava.iax.ui.BeanCanApplet;
 
-public class JavaDummyApplet extends WebLabApplet implements ActionListener {
+public class JavaDummyApplet extends WebLabApplet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
@@ -37,8 +41,6 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 	private Timer expirationTimer = null;
 	public final JLabel messages;
 	private final JPanel experimentPanel;
-	
-	BeanCan bc;
 	
 	
 	public JavaDummyApplet(){
@@ -66,9 +68,8 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		JButton button = new JButton("Voz !");
+		JButton button = new JButton("Coletar Dados");
 		buttonsPanel.add(button);	
-		button.addActionListener(this);
 
 
 		final JPanel textPanel = new JPanel();
@@ -77,14 +78,40 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 		textPanel.add(new JLabel("Número aleatório para saber que o applet não foi reiniciado:"));
 		textPanel.add(new JLabel("" + new Random().nextInt()));
 		this.getContentPane().add(textPanel);
+	
+		
+		final Command command = new  PulseCommand(1, true);
+		
+		
+		//captura eventos do botao
+		button.addActionListener(new ActionListener() {
+			
+			//executa eventos conforme a acao do botao
+			public void actionPerformed(ActionEvent e) {
+				
+				//metodo do deusto para enviar e receber comandos
+				JavaDummyApplet.this.getBoardController().sendCommand(command, new ICommandCallback() {
+					
+					//Se o comando for recebido pelo servidor, retornar a menssagem
+					public void onSuccess(ResponseCommand response) {
+						JavaDummyApplet.this.messages.setText("Received:" + response.getCommandString());
+					}
+					//Se o comando for não recebido pelo servidor, retornar a menssagem de erro
+					public void onFailure(String message) {
+						JavaDummyApplet.this.messages.setText("ERROR: " + message);
+					}
+				});
+				
+				
+			}
+		});
+		
+		
+		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		
-		JavaDummyApplet.this.timeLabel.setText("Comando de voz iniciado !!!!!");
-		bc.main(null);
 
-	}
+	
 
 	private void startWebcam(){
 		final TimerTask timerTask = new TimerTask(){
@@ -165,5 +192,6 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 		if(this.expirationTimer != null)
 			this.expirationTimer.cancel();
 	}
+
 
 }
