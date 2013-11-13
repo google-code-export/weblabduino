@@ -1,44 +1,55 @@
-//ARDUINO 1.0+ ONLY
-//ARDUINO 1.0+ ONLY
+/*
+  Web Server
+ 
+ A simple web server that shows the value of the analog input pins.
+ using an Arduino Wiznet Ethernet shield. 
+ 
+ Circuit:
+ * Ethernet shield attached to pins 10, 11, 12, 13
+ * Analog inputs attached to pins A0 through A5 (optional)
+ 
+ created 18 Dec 2009
+ by David A. Mellis
+ modified 9 Apr 2012
+ by Tom Igoe
+ 
+ */
 
-
-#include <Ethernet.h>
 #include <SPI.h>
-boolean reading = false;
+#include <Ethernet.h>
 
-////////////////////////////////////////////////////////////////////////
-//CONFIGURE
-////////////////////////////////////////////////////////////////////////
-  byte ip[] = { 192, 168, 1, 54 };   //Manual setup only
-  //byte gateway[] = { 192, 168, 0, 1 }; //Manual setup only
-  //byte subnet[] = { 255, 255, 255, 0 }; //Manual setup only
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network:
+byte mac[] = { 
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x3a };
 
-  // if need to change the MAC address (Very Rare)
-  byte mac[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x2a };
 
-  EthernetServer server = EthernetServer(80); //port 80
-////////////////////////////////////////////////////////////////////////
+// Initialize the Ethernet server library
+// with the IP address and port you want to use 
+// (port 80 is default for HTTP):
+EthernetServer server(80);
 
-void setup(){
+void setup() {
+ // Open serial communications and wait for port to open:
   Serial.begin(9600);
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  }
 
-  //Pins 10,11,12 & 13 are used by the ethernet shield
 
-  pinMode(2, OUTPUT);
-
-  Ethernet.begin(mac,ip);
-  //Ethernet.begin(mac, ip, gateway, subnet); //for manual setup
-
+  // start the Ethernet connection and the server:
+  Ethernet.begin(mac);
   server.begin();
+  Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
-
+    
 }
 
-void loop(){
 
-  // listen for incoming clients, and process qequest.
+void loop() {
+   // listen for incoming clients, and process qequest.
   checkForClient();
-
+  
 }
 
 void checkForClient(){
@@ -49,41 +60,27 @@ void checkForClient(){
         Serial.println("Cliente Conectado");
         String clientMsg ="";
 
-
     while (client.connected()) {
       if (client.available()) {
- 
         
         char c = client.read();
-        
+              
         clientMsg+=c;//store the recieved chracters in a string
 
           Serial.println(clientMsg);
 
            switch (c) {
-            case '2':
+            case '1':
               //add code here to trigger on 2
-              blinkPin(13, client);
+              blinkPin(5, client);
+              client.println("fim");
               client.stop(); // close the connection:
               break;
-              
-            case '3':
-            //add code here to trigger on 3
-              readPin(0, client);
-              readPin(1, client);
-              readPin(2, client);
-              readPin(3, client);
-              readPin(4, client);
-              readPin(5, client);
-              client.stop(); // close the connection:
-              break;
-            
+          
             default:
               client.stop(); // close the connection:
+              break;            
           }
-
-
-        
 
       }
     }
@@ -96,20 +93,20 @@ void checkForClient(){
 }
 
 void blinkPin(int pin, EthernetClient client){
-//blink a pin - Client needed just for HTML output purposes.  
   
   client.print("Blinking on pin ");
   client.println(pin);
 
+  pinMode(pin,OUTPUT);
   digitalWrite(pin, HIGH);
-  delay(250);
+  delay(1000);
   digitalWrite(pin, LOW);
-  delay(250);
+  delay(1000);
 
 }
 
 void onPin(int pin, EthernetClient client){
-//on a pin - Client needed just for HTML output purposes.  
+  
   client.print("Turning on pin ");
   client.println(pin);
 
@@ -119,7 +116,7 @@ void onPin(int pin, EthernetClient client){
 }
 
 void offPin(int pin, EthernetClient client){
-//off a pin - Client needed just for HTML output purposes.  
+  
   client.print("Turning off pin ");
   client.println(pin);
 
@@ -129,11 +126,11 @@ void offPin(int pin, EthernetClient client){
 }
 
 void readPin(int pin, EthernetClient client){
-//read a pin - Client needed just for HTML output purposes.  
-    //client.print("analog input ");
-    //client.print(pin);
-    //client.print(" is ");
-    client.print(analogRead(pin));
-    client.print(";");
-    delay(1000);
+    
+    client.print("analog input ");
+    client.print(pin);
+    client.print(" is ");
+    client.println(analogRead(pin));
+
 }
+
