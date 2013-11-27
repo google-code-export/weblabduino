@@ -1,4 +1,0 @@
-#labels Phase-Deploy
-=Unable to find a javac compiler=
-
-Copiar o arquivo tool.jar da pasta java jdk para a jre
