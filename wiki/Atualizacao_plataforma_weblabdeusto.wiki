@@ -28,9 +28,9 @@ Em suma, são necessários três passos para realizar a atualização completa: 
 Atualização dos arquivos da aplicação
 Executar o comando abaixo dentro da diretório onde o weblabdeusto foi instalado. Por exemplo: _/opt/weblabdeusto/_
 
-
- ||git pull --progress||
-
+<source lang="bash">
+git pull --progress
+</source>
 
 Recompilar e reinstalar o sistema 
 Para recompilar e reinstalar a aplicação do weblabdeusto é necessário executar os seguintes arquivos: 
