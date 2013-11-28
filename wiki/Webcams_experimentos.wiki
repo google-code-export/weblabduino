@@ -62,4 +62,3 @@ Para a configurar o [https://github.com/weblabdeusto/weblabdeusto/blob/master/ex
 Devemos tomar precaução com a defeinição deste parâmetro de localização das imagens, pois a aplicação inialmente somente encontrará imagens que estão ou no mesmo diretório que o arquivo _.jar_, ou diretório que estão abaixo deste, assim não é possível buscar imagens em locais anteriores ao diretório raiz do aplicativo.
 
 Já para publicação em sites ou outras plataformas, podemos criar quantos links forem necessários, definindo como origem o respectivo _.jpg_.
-
