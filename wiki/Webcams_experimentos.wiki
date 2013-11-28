@@ -24,7 +24,8 @@ Préviamente, configuramos o serviço _vsftpd_ para aceitar o upload das imagens
 
 Para o weblabdeusto acessar estas imagens, devemos criar um link na seguinte pasta onde podemos encontrar os arquivos que os clientes irão acessar:
 
-{{{ _/usr/local/lib/python2.7/dist-packages/weblabdeusto-5.0-py2.7.egg/weblabdeusto_data/war/weblabclientlab/img/_
+{{{ 
+/usr/local/lib/python2.7/dist-packages/weblabdeusto-5.0-py2.7.egg/weblabdeusto_data/war/weblabclientlab/img/
 }}}
 Com o comando:
 
