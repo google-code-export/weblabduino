@@ -7,12 +7,6 @@
 
 Sistema Operacional: Ubuntu Server 12.04
 
- * Definimos aqui apenas as configurações básicas para uma implementação semelhante ao ao laboratório do projeto webduino;
- * Considere que utilizamos o seguinte diretório de instalação do weblabdeusto: _/opt/weblabdeusto_;
- * Todas nossas instâncias são dispostas no diretório  _/opt/weblabdeusto/labs_;
- * As informações mais detalhadas dos procedimentos estão disponíveis em: https://weblabdeusto.readthedocs.org/en/latest/
- *  Para instalação inicial da plataforma weblabdeusto utilize os documentos fornecidos pelos desenvolvedores em: https://weblabdeusto.readthedocs.org/en/latest/installation.html
-
 ----------------------------------------------
 
 ==PROCEDIMENTOS==
