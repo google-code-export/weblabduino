@@ -32,3 +32,21 @@ Ainda que utilizamos todos estes parâmetros para implementação de uma nova in
 {{{
 /opt/weblabdeusto/instancia/core_machine/
 }}}
+
+Agora que possuímos nossa instâncias personalizada, podemos executa-la através do comando abaixo:
+
+{{{
+weblab-admin start instancia -m core_machine
+}}}
+
+Podemos perceber que o comando _weblab-admin_ é o principal para executar ações no weblabdeusto, assim para conhecer as demais digite-o sem nenhum parâmetro:
+
+{{{
+weblab-admin
+}}}
+
+O mesmo pode ser feito para o parâmetro create:
+
+{{{
+weblab-admin create
+}}}
