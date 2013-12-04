@@ -25,7 +25,9 @@ Antes de tudo, necessitamos de uma _IDE_ como o [http://www.eclipse.org/download
 
 Após instalar a IDE, e realizar o download ou instalação do weblabdeusto, podemos encontrar no diretório _/weblabdeusto-master/weblabdeusto-master/experiments/managed/libs/client/java_ o projeto que será incluido em nossa IDE. Para que os arquivos originais mantenham-se instactos, devemos selecionar a opção que irá copiar os arquivos para a nossa _workspace_ que se localiza em _C:\Users\Usuario\workspace_ no windows ou _/home/usuario/workspace_ em sistemas Linux.
 
-==Eclipse==
+==IMPORTAÇÃO==
+
+===Eclipse===
 
 Com a IDE em execução devemos importar o projeto para a nossa _workspace_  através do menu _File_ e _import_.
 
@@ -45,6 +47,40 @@ Clicando em _Finish_ podemos navegar pelo projeto até a classe _JavaDummyApplet
 http://weblabduino.googlecode.com/files/browse_project.png
 
 Para o servidor de experimentos são necessários os mesmos procedimentos, entretanto o diretório do projeto original é o _/weblabdeusto-master/weblabdeusto-master/experiments/managed/libs/server/java_.
+
+
+==EXPORTAÇÃO==
+Os procedimentos de exportação são diferentes para o cliente e para o servidor, pois o primeiro irá será executado à partir do browser e o segundo será executado diretamente no computador servidor de experimentos.
+
+Primeiramente selecione no diretório do projeto da aplicação cliente _javadummy_, clique com o botão direito e selecione a opção _Export_.
+
+*Cliente e Servidor*
+
+http://weblabduino.googlecode.com/files/export_project.png
+
+Agora selecione o tipo que será importado sendo para o cliente _Jar File_ e para o servidor _Runnable Jar File_.
+
+*Cliente*
+
+http://weblabduino.googlecode.com/files/export_type_project.png
+
+*Servidor*
+
+http://weblabduino.googlecode.com/files/export_type_server_project.png
+
+
+Com os modos selecionados, devemos definir o local de exportação para ambos e para o servidor, em especial devemos selecionar a classe de execução préviamente utilizada nos testes.
+
+*Cliente*
+
+http://weblabduino.googlecode.com/files/finish_export_project.png
+
+
+*Servidor*
+
+http://weblabduino.googlecode.com/files/finish_export_server_project.png
+
+Estes arquivos serão utilizados para incluir no nosso sistema.
 
 ==OBSERVAÇÔES==
  # Preste atenção se a biblioteca _plugin.jar_ é referenciada no arquivo _build.xml_, a qual é utilizado pela aplicação;
