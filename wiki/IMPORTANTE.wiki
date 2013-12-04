@@ -7,14 +7,15 @@ Assim, devemos nos direcionar primeiramente ao tutorial [http://code.google.com/
 
 Em resumo, de acordo com a implementação do projeto weblabduino, as etapas são os seguintes:
 
- # Instalação do weblabdeusto e seus softwares de apoio;
- # Criação de uma nova instância;
- # Inclusão de um novo experimento;
- # Desenvolvimento 
+ # Instalação do weblabdeusto e seus softwares de apoio => [https://weblabdeusto.readthedocs.org/en/latest/installation.html Instalação]
+ # Criação de uma nova instância => [http://code.google.com/p/weblabduino/wiki/Criando_instancia Criando_instancia]
+ # Inclusão de um novo experimento => [http://code.google.com/p/weblabduino/wiki/Inclusao_experimento Inclusao_experimento]
+ # Desenvolvimento das aplicações dos experimentos => [http://code.google.com/p/weblabduino/wiki/Desenvolvendo_aplicacoes Desenvolvendo_aplicacoes]
+
 
 O passos adicionais são:
- # Configuração com o servidor web Apache
- # Configuração das câmeras de visualização dos experimentos;
+ # Configuração com o servidor web Apache => [http://code.google.com/p/weblabduino/wiki/Integracao_apache_weblab Integracao_apache_weblab]
+ # Configuração das câmeras de visualização dos experimentos => [http://code.google.com/p/weblabduino/wiki/Webcams_experimentos Webcams_experimentos]
 
 
 
