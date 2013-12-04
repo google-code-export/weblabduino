@@ -10,7 +10,11 @@ Em resumo, de acordo com a implementação do projeto weblabduino, as etapas sã
  # Instalação do weblabdeusto e seus softwares de apoio;
  # Criação de uma nova instância;
  # Inclusão de um novo experimento;
+ # Desenvolvimento 
 
 O passos adicionais são:
  # Configuração com o servidor web Apache
  # Configuração das câmeras de visualização dos experimentos;
+
+
+ * Todos os tutoriais do projeto tentam definir de maneira mais simplória a implementação que realizamos aos nossos requisitos.
