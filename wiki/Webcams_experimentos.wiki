@@ -12,7 +12,7 @@ Sistema Operacional: Ubuntu Server 12.04
  * Todas nossas instâncias são dispostas no diretório  _/opt/weblabdeusto/labs_;
  * As informações mais detalhadas dos procedimentos estão disponíveis em: https://weblabdeusto.readthedocs.org/en/latest/
  *  Para instalação inicial da plataforma weblabdeusto utilize os documentos fornecidos pelos desenvolvedores em: https://weblabdeusto.readthedocs.org/en/latest/installation.html
-
+ *  Por ser uma plataforma recente, o weblabdeusto possui atualizações constantes o que poderá diferenciar em alguns procedimentos abaixo;
 ----------------------------------------------
 
 ==PROCEDIMENTOS==
