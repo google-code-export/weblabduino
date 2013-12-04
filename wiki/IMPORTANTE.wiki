@@ -17,4 +17,10 @@ O passos adicionais são:
  # Configuração das câmeras de visualização dos experimentos;
 
 
+
+
+
+
+
+
  * Todos os tutoriais do projeto tentam definir de maneira mais simplória a implementação que realizamos aos nossos requisitos.
