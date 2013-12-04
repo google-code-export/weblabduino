@@ -82,5 +82,7 @@ http://weblabduino.googlecode.com/files/finish_export_server_project.png
 
 Estes arquivos serão utilizados para incluir no nosso sistema.
 
+-----------------------------
+
 ==OBSERVAÇÔES==
  # Preste atenção se a biblioteca _plugin.jar_ é referenciada no arquivo _build.xml_, a qual é utilizado pela aplicação;
