@@ -23,4 +23,4 @@ O passos adicionais são:
 
 
 
- * Todos os tutoriais do projeto tentam definir de maneira mais simplória a implementação que realizamos aos nossos requisitos.
+ * Todos os tutoriais do projeto tentam definir de maneira mais simplória da implementação que realizamos aos nossos requisitos.
