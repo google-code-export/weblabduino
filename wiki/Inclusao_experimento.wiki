@@ -190,3 +190,4 @@ Agora o usuário ou grupo o qual recebeu a permissão está habilitado a acessar
 
  # Quando atribuimos servidores de experimento para recepção dos comandos, devemos iniciá-los antes do weblabdeusto, para que este encontre nosso servidor de experimento. Caso alguma exista alguma falha de comunicação entre o sistema prinpical e este sub servidor, ao reservar o experimento o sistema no informará que este está indisponível.
 
+ # Em geral, o diretório ao qual será acessível pelos usuários será o _/usr/local/lib/python2.7/dist-packages/weblabdeusto-5.0-py2.7.egg/weblabdeusto_data/war/weblabclientlab_ , assim quando necessitar atualizar a aplicação cliente, podemos substituir as aplicações neste diretório.
