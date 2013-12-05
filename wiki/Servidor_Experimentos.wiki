@@ -65,3 +65,9 @@ Agora só precisamos atualizar no sistema operacional as aplicações que irão 
 {{{
 update-rc.d experimentoServer.sh defaults
 }}}
+
+Reinicie o computador e verifique se a aplicação _JavaXmlRpcServer.jar_ está em execução no gerenciador de tarefas do sistema, sendo no linux com comando abaixo e usuário administrador:
+
+{{{
+ps -x | grep .jar
+}}}
