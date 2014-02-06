@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:es.deusto.weblab.client.ui.widgets">
+
+	<ui:with field="i18n" type="es.deusto.weblab.client.i18n.IWebLabI18N" />
+
+	
+	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10">
+		<p1:WlWebcam height="243px" ui:field="camera"/>
+		<p1:WlTimer ui:field="timer"/>
+
+
+
+
+	</g:VerticalPanel>
+	
+</ui:UiBinder> 
