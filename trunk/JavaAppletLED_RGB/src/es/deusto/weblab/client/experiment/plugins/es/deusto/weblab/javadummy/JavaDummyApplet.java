@@ -22,14 +22,15 @@ import javax.swing.JPanel;
 import es.deusto.weblab.client.experiment.plugins.java.ConfigurationManager;
 import es.deusto.weblab.client.experiment.plugins.java.WebLabApplet;
 
-import org.asteriskjava.iax.ui.BeanCan;
-import org.asteriskjava.iax.ui.BeanCanApplet;
+import org.asteriskjava.iax.audio.javasound.AudioProperties;
+import org.asteriskjava.iax.protocol.Log;
+import org.asteriskjava.iax.ui.*;
 
 public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
-	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/webcam/espectrofotometro_01.jpg";
+	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "/img/webcam/teste.jpg";
 	
 	private final JPanel webcamPanel;
 	public final JLabel timeLabel;
@@ -37,9 +38,11 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 	private Timer expirationTimer = null;
 	public final JLabel messages;
 	private final JPanel experimentPanel;
-	
-	BeanCan bc;
-	
+		
+	static final String _host = "192.168.1.100" ;
+	static final String _username = "1003" ;
+	static final String _password = "12345" ;
+	static final String _exp = "1002" ;
 	
 	public JavaDummyApplet(){
 		
@@ -73,17 +76,32 @@ public class JavaDummyApplet extends WebLabApplet implements ActionListener {
 
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		textPanel.add(new JLabel("Este é um JavaApplet"));
-		textPanel.add(new JLabel("Número aleatório para saber que o applet não foi reiniciado:"));
-		textPanel.add(new JLabel("" + new Random().nextInt()));
+		textPanel.add(new JLabel("Estudo de espectros com LDR e LED RGB"));
+		textPanel.add(new JLabel("Comandos por voz disponível, utilize as seguintes palavras:"));
+		textPanel.add(new JLabel("\n'Vermelho' -> Piscar o led vermelho"));
+		textPanel.add(new JLabel("\n'Verde' -> Piscar o led verde"));
+		textPanel.add(new JLabel("\n'Azul' -> Piscar o led azul"));
+		//textPanel.add(new JLabel("" + new Random().nextInt()));
 		this.getContentPane().add(textPanel);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
 		JavaDummyApplet.this.timeLabel.setText("Comando de voz iniciado !!!!!");
-		bc.main(null);
+		AudioProperties.loadFromFile("audio.properties");
+			
+		BeanCanFrameManager frameManager = new BeanCanFrameManager(false,Log.DEBUG,"");
+		
+		if(frameManager != null){
+			
+			frameManager.set_host(_host);
+			frameManager.set_username(_username);
+			frameManager.set_password(_password);
+			frameManager.register();
+			frameManager.dialString.setText(_exp);
+			frameManager.act.doClick();
 
+		}
 	}
 
 	private void startWebcam(){

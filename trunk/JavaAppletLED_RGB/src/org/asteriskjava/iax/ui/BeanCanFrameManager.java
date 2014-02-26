@@ -13,6 +13,7 @@
 
 package org.asteriskjava.iax.ui;
 
+import java.io.Closeable;
 import java.net.*;
 
 import java.awt.event.*;
@@ -52,7 +53,7 @@ public class BeanCanFrameManager
     }
 
     public void start() {
-        this.show();
+       // this.show();
         _audioBase = new org.asteriskjava.iax.audio.javasound.Audio8k();
         try {
             _bind = new BinderSE(_host, _audioBase);
@@ -60,10 +61,11 @@ public class BeanCanFrameManager
         catch (SocketException ex) {
             status.setText(ex.getMessage());
         }
-        
+
     }
 
     public void stop() {
+    
         if (_bind != null) {
             _bind.stop();
         }
@@ -79,7 +81,7 @@ public class BeanCanFrameManager
         _password = password;
     }
 
-    void register() {
+    public void register() {
         if (_bind == null) {
             start();
         }
@@ -174,6 +176,8 @@ public class BeanCanFrameManager
     /**
      */
     void dialString_actionPerformed(ActionEvent e) {
+    	
+    	System.out.println(e);
         if (_ca == null) {
             if (_peer != null) {
                 String num = dialString.getText();
@@ -187,7 +191,7 @@ public class BeanCanFrameManager
                 }
                 else {
                     _ca.answer();
-                    act.setText("Desligar");
+                    act.setText("Hangup");
                 }
             }
             else {
