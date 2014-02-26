@@ -14,6 +14,7 @@
 
 package es.deusto.weblab.client.experiments.corponegro.ui;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
@@ -26,6 +27,15 @@ import es.deusto.weblab.client.ui.widgets.WlTimer;
 import es.deusto.weblab.client.ui.widgets.WlWebcam;
 
 public class CorpoNegroExperiment extends UIExperimentBase{
+	
+	
+	private static final String WEBCAM_REFRESH_TIME_PROPERTY   = "webcam.refresh.millis";
+	private static final int    DEFAULT_WEBCAM_REFRESH_TIME    = 200;
+	
+	final MainPanel mainPanel = new MainPanel();
+	WlWebcam camera = mainPanel.getWebcam();
+	WlTimer timer = mainPanel.getTimer();
+
 
 	public CorpoNegroExperiment(IConfigurationRetriever configurationRetriever,
 			IBoardBaseController boardController) {
@@ -56,23 +66,31 @@ public class CorpoNegroExperiment extends UIExperimentBase{
     	final JSONValue value = JSONParser.parseStrict(initialConfiguration);
     	final JSONObject obj = (JSONObject)value;
     	
-		final MainPanel mainPanel = new MainPanel();
-    	
-		// 
-		// Configure the camera
-		final WlWebcam camera = mainPanel.getWebcam();
-		camera.configureWebcam(obj);
-		camera.start();
-		addDisposableWidgets(camera);
-		
-		//
-		// Configure the timer
-		final WlTimer timer = mainPanel.getTimer();
-		timer.updateTime(time);
+
 		addDisposableWidgets(timer);
+		
+	    this.camera.setUrl("http://192.168.42.102/image.jpg");
+	    this.camera.setStreamingUrl("http://localhost/video.mjpeg", 320, 240);
+		this.camera.setVisible(true);
+	    this.camera.start();
     	
 		putWidget(mainPanel);
     }
+
+    
+    private void createProvidedWidgets() {
+		this.timer = new WlTimer(false);	
+    	
+		this.camera = GWT.create(WlWebcam.class);
+		this.camera.setTime(this.getWebcamRefreshingTime());
+	}
+    
+    private int getWebcamRefreshingTime() {
+		return this.configurationRetriever.getIntProperty(
+			CorpoNegroExperiment.WEBCAM_REFRESH_TIME_PROPERTY, 
+			CorpoNegroExperiment.DEFAULT_WEBCAM_REFRESH_TIME
+		);
+	}	
 
 	
 }
