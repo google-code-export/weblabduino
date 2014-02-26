@@ -30,7 +30,7 @@ public class JavaDummyApplet extends WebLabApplet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String WEBCAM_IMAGE_URL_PROPERTY_NAME = "webcam.image";
-	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "img/webcam/corponegro.jpg";
+	public static final String DEFAULT_WEBCAM_IMAGE_URL       = "img/webcam/espectrofotometro.jpg";
 	
 	private final JPanel webcamPanel;
 	private final JLabel timeLabel;
@@ -64,23 +64,18 @@ public class JavaDummyApplet extends WebLabApplet {
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 		this.experimentPanel.add(buttonsPanel);
 		
-		JButton buttonLiga = new JButton("Ligar lâmpada");
+		JButton buttonLiga = new JButton("Analisar espectro...");
 		buttonsPanel.add(buttonLiga);	
 		
-		JButton buttonDesliga= new JButton("Desligar lâmpada");
-		buttonsPanel.add(buttonDesliga);	
-
 
 		final JPanel textPanel = new JPanel();
 		textPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		textPanel.add(new JLabel("Este é o experimento com corpo negro\n"));
-		textPanel.add(new JLabel("Para controlar a lâmpada pressione os botões"));
+		textPanel.add(new JLabel("Este é o experimento para análise de espectros\n"));
+		textPanel.add(new JLabel("Para utilizar pressione o botão"));
 		this.getContentPane().add(textPanel);
 	
 		
 		final Command commandLiga = new  PulseCommand(1, true);
-		final Command commandDesliga = new  PulseCommand(2, true);
-
 		
 		
 		//captura eventos do botao
@@ -106,28 +101,7 @@ public class JavaDummyApplet extends WebLabApplet {
 			}
 		});
 		
-		//captura eventos do botao
-				buttonDesliga.addActionListener(new ActionListener() {
-					
-					//executa eventos conforme a acao do botao
-					public void actionPerformed(ActionEvent e) {
-						
-						//metodo do deusto para enviar e receber comandos
-						JavaDummyApplet.this.getBoardController().sendCommand(commandDesliga, new ICommandCallback() {
-							
-							//Se o comando for recebido pelo servidor, retornar a menssagem
-							public void onSuccess(ResponseCommand response) {
-								JavaDummyApplet.this.messages.setText("Received:" + response.getCommandString());
-							}
-							//Se o comando for não recebido pelo servidor, retornar a menssagem de erro
-							public void onFailure(String message) {
-								JavaDummyApplet.this.messages.setText("ERROR: " + message);
-							}
-						});
-						
-						
-					}
-				});
+
 
 	}
 	
