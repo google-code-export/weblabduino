@@ -61,6 +61,8 @@ public class CorpoNegroExperiment extends UIExperimentBase{
 		// 
 		// Configure the camera
 		final WlWebcam camera = mainPanel.getWebcam();
+		camera.setUrl("http://weblabduino.pucsp.br/corponegro.jpg");
+		camera.setStreamingUrl("http://weblabduino.pucsp.br/webcam/mem/video.mjpeg",320,240);
 		camera.configureWebcam(obj);
 		camera.start();
 		addDisposableWidgets(camera);
