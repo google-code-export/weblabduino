@@ -27,7 +27,7 @@ public class MainPanel extends Composite {
 	private static MainPanelUiBinder uiBinder = GWT
 			.create(MainPanelUiBinder.class);
 	
-	@UiField(provided = true) WlWebcam camera;
+	@UiField WlWebcam camera;
 	@UiField WlTimer timer;
 
 	interface MainPanelUiBinder extends UiBinder<Widget, MainPanel> {
