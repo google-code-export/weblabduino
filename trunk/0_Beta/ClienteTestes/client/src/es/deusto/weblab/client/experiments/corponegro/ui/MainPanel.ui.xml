@@ -5,11 +5,12 @@
 	<ui:with field="i18n" type="es.deusto.weblab.client.i18n.IWebLabI18N" />
 
 	
-	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10">
-		<p1:WlWebcam height="243px" ui:field="camera"/>
-		<p1:WlTimer ui:field="timer"/>
-
-
+	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10" height="300" styleName="" ui:field="widget">
+		<g:VerticalPanel ui:field="cam">
+				<p1:WlWebcam height="243px" ui:field="camera"/>
+				<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
+			</g:VerticalPanel>
+		<g:VerticalPanel ui:field="grafico"/>
 
 
 	</g:VerticalPanel>

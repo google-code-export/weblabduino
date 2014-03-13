@@ -17,6 +17,9 @@ package es.deusto.weblab.client.experiments.corponegro.ui;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.deusto.weblab.client.configuration.IConfigurationRetriever;
@@ -72,9 +75,11 @@ public class CorpoNegroExperiment extends UIExperimentBase{
 		final WlTimer timer = mainPanel.getTimer();
 		timer.updateTime(time);
 		addDisposableWidgets(timer);
-    	
-		putWidget(mainPanel);
-    }
+		
+		mainPanel.setGrafico("http://www.google.com/images/logo.gif");
+		
+		this.putWidget(mainPanel);
+	}
 
 	
 }
