@@ -17,9 +17,6 @@ package es.deusto.weblab.client.experiments.corponegro.ui;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import es.deusto.weblab.client.configuration.IConfigurationRetriever;
@@ -64,19 +61,26 @@ public class CorpoNegroExperiment extends UIExperimentBase{
 		// 
 		// Configure the camera
 		final WlWebcam camera = mainPanel.getWebcam();
-		camera.setUrl("http://weblabduino.pucsp.br/corponegro.jpg");
+		camera.setUrl("http://weblabduino.pucsp.br/webcam/cna/image.jpg");
 		camera.setStreamingUrl("http://weblabduino.pucsp.br/webcam/mem/video.mjpeg",320,240);
 		camera.configureWebcam(obj);
 		camera.start();
 		addDisposableWidgets(camera);
 		
+		// Configure the camera
+		final WlWebcam camera2 = mainPanel.getWebcam2();
+		camera2.setUrl("http://api.cosm.com/v2/feeds/107050970/datastreams/sensor_temperatura.png");
+		camera2.configureWebcam(obj);
+		camera2.start();
+		addDisposableWidgets(camera2);
+		
+
 		//
 		// Configure the timer
 		final WlTimer timer = mainPanel.getTimer();
 		timer.updateTime(time);
 		addDisposableWidgets(timer);
 		
-		mainPanel.setGrafico("http://www.google.com/images/logo.gif");
 		
 		this.putWidget(mainPanel);
 	}
