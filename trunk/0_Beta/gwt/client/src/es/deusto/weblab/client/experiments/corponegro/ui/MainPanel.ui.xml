@@ -8,11 +8,9 @@
 	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10" height="300" styleName="" ui:field="widget">
 		<g:VerticalPanel ui:field="cam">
 				<p1:WlWebcam height="243px" ui:field="camera"/>
+				<p1:WlWebcam ui:field="camera2"/>
 				<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
 			</g:VerticalPanel>
-		<g:VerticalPanel ui:field="grafico"/>
-
-
-	</g:VerticalPanel>
+	 </g:VerticalPanel>
 	
 </ui:UiBinder> 

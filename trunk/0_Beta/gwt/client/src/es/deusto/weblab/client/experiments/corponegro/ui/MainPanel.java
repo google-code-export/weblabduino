@@ -27,6 +27,7 @@ import es.deusto.weblab.client.ui.widgets.WlWebcam;
 import es.deusto.weblab.client.ui.widgets.WlTimer;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
+import es.deusto.weblab.client.ui.widgets.WlWebcamSafariBased;
 
 public class MainPanel extends Composite {
 
@@ -37,13 +38,14 @@ public class MainPanel extends Composite {
 	@UiField WlTimer timer;
 	@UiField VerticalPanel widget;
 	@UiField VerticalPanel cam;
-	@UiField VerticalPanel grafico;
+	@UiField(provided = true) WlWebcam camera2;
 
 	interface MainPanelUiBinder extends UiBinder<Widget, MainPanel> {
 	}
 
 	public MainPanel() {
 		this.camera = GWT.create(WlWebcam.class);
+		this.camera2 = GWT.create(WlWebcam.class);
 		initWidget(uiBinder.createAndBindUi(this));
 
 	}
@@ -51,23 +53,14 @@ public class MainPanel extends Composite {
 	public WlWebcam getWebcam() {
 		return this.camera;
 	}
+	
+	public WlWebcam getWebcam2() {
+		return this.camera2;
+	}
+	
 
 	public WlTimer getTimer(){
 		return this.timer;
 	}
-
-	public VerticalPanel setGrafico(String url){
-
-		final Image image = new Image();
-
-		image.setUrl(url);
-
-		image.setVisibleRect(70, 100, 276, 110);
-
-		this.grafico.add(image);
-
-		return this.grafico;
-	}
-
 
 }
