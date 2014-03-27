@@ -23,9 +23,6 @@ import es.deusto.weblab.client.experiments.controlapp.ControlAppCreatorFactory;
 import es.deusto.weblab.client.experiments.corponegro.CorpoNegroCreatorFactory;
 import es.deusto.weblab.client.experiments.redirect.RedirectCreatorFactory;
 import es.deusto.weblab.client.experiments.robot_movement.RobotMovementCreatorFactory;
-import es.deusto.weblab.client.experiments.robot_proglist.RobotProglistCreatorFactory;
-import es.deusto.weblab.client.experiments.robot_standard.RobotStandardCreatorFactory;
-import es.deusto.weblab.client.experiments.robotarm.RobotArmCreatorFactory;
 import es.deusto.weblab.client.experiments.submarine.SubmarineCreatorFactory;
 import es.deusto.weblab.client.lab.experiments.util.applets.flash.FlashAppCreatorFactory;
 import es.deusto.weblab.client.lab.experiments.util.applets.java.JavaAppletCreatorFactory;
@@ -43,10 +40,7 @@ class EntryRegistry {
 		new JavaAppletCreatorFactory(),
 		new JSAppCreatorFactory(),
 		new BinaryCreatorFactory(),
-		new RobotStandardCreatorFactory(),
 		new RobotMovementCreatorFactory(),
-		new RobotProglistCreatorFactory(),
-		new RobotArmCreatorFactory(),
 		new SubmarineCreatorFactory(),
 		new ControlAppCreatorFactory(),
 		new AquariumCreatorFactory(),
