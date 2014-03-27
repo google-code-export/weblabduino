@@ -40,7 +40,6 @@ import es.deusto.weblab.client.comm.exceptions.CommException;
 import es.deusto.weblab.client.configuration.IConfigurationRetriever;
 import es.deusto.weblab.client.dto.experiments.Command;
 import es.deusto.weblab.client.dto.experiments.ResponseCommand;
-import es.deusto.weblab.client.experiments.gpib.ui.GpibExperiment;
 import es.deusto.weblab.client.experiments.logic.circuit.Circuit;
 import es.deusto.weblab.client.experiments.logic.circuit.CircuitParser;
 import es.deusto.weblab.client.experiments.logic.circuit.Gate;
@@ -53,9 +52,9 @@ import es.deusto.weblab.client.lab.comm.callbacks.IResponseCommandCallback;
 import es.deusto.weblab.client.lab.experiments.ExperimentBase;
 import es.deusto.weblab.client.lab.experiments.IBoardBaseController;
 import es.deusto.weblab.client.ui.widgets.WlTimer;
+import es.deusto.weblab.client.ui.widgets.WlTimer.IWlTimerFinishedCallback;
 import es.deusto.weblab.client.ui.widgets.WlWaitingLabel;
 import es.deusto.weblab.client.ui.widgets.WlWebcam;
-import es.deusto.weblab.client.ui.widgets.WlTimer.IWlTimerFinishedCallback;
 
 public class MobileLogicExperiment extends ExperimentBase {
 
@@ -210,7 +209,7 @@ public class MobileLogicExperiment extends ExperimentBase {
 
 		// Timer
 		this.timer = new WlTimer();
-		this.timer.setStyleName(GpibExperiment.Style.TIME_REMAINING);
+		//this.timer.setStyleName(GpibExperiment.Style.TIME_REMAINING);
 		this.timer.getWidget().setWidth("30%");
 		this.timer.setTimerFinishedCallback(new IWlTimerFinishedCallback(){
 			@Override
