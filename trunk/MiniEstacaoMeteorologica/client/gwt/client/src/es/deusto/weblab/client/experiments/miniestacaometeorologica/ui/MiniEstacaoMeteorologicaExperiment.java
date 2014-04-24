@@ -69,35 +69,35 @@ public class MiniEstacaoMeteorologicaExperiment extends UIExperimentBase{
 		
 		//Grafico gerado no Xively para o sensor de monoxido de carbono 
 		final WlWebcam graficoPNGCO2 = mainPanel.getGraficoCO2();
-		graficoPNGCO2.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_monoxido_de_carbono.png?t=CO%C2%B2&l=0-1023&s=5&b=true&g=true&w=550&h=250&duration=120minutes&timezone=Brasilia");
+		graficoPNGCO2.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_monoxido_de_carbono.png");
 		graficoPNGCO2.configureWebcam(obj);
 		graficoPNGCO2.start();
 		addDisposableWidgets(graficoPNGCO2);
 		
 		//Grafico gerado no Xively para o sensor de temperatura
 		final WlWebcam graficoPNGTemperatura = mainPanel.getGraficoTemperatura();
-		graficoPNGTemperatura.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_temperatura.png?t=Temperatura&l=%C2%B0C&s=5&b=true&g=true&w=550&h=250&duration=120minutes&timezone=Brasilia");
+		graficoPNGTemperatura.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_temperatura.png");
 		graficoPNGTemperatura.configureWebcam(obj);
 		graficoPNGTemperatura.start();
 		addDisposableWidgets(graficoPNGTemperatura);
 		
 		//Grafico gerado no Xively para o sensor de humidade
 		final WlWebcam graficoPNGHumidade = mainPanel.getGraficoHumidade();
-		graficoPNGHumidade.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_humidade.png?t=Humidade&l=/100&s=5&b=true&g=true&w=550&h=250&duration=120minutes&timezone=Brasilia");
+		graficoPNGHumidade.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_humidade.png");
 		graficoPNGHumidade.configureWebcam(obj);
 		graficoPNGHumidade.start();
 		addDisposableWidgets(graficoPNGHumidade);
 		
 		//Grafico gerado no Xively para o sensor de luz
 		final WlWebcam graficoPNGLuz = mainPanel.getGraficoLuz();
-		graficoPNGLuz.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_de_luz.png?t=Luminosidade&l=lumens&s=5&b=true&g=true&w=550&h=250&duration=120minutes&timezone=Brasilia");
+		graficoPNGLuz.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_de_luz.png");
 		graficoPNGLuz.configureWebcam(obj);
 		graficoPNGLuz.start();
 		addDisposableWidgets(graficoPNGLuz);
 		
 		//Grafico gerado no Xively para o sensor de som
 		final WlWebcam graficoPNGSom = mainPanel.getGraficoSom();
-		graficoPNGSom.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_sonoro.png?t=Som&l=0-1023&s=5&b=true&g=true&w=550&h=250&duration=120minutes&timezone=Brasilia");
+		graficoPNGSom.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_sonoro.png");
 		graficoPNGSom.configureWebcam(obj);
 		graficoPNGSom.start();
 		addDisposableWidgets(graficoPNGSom);

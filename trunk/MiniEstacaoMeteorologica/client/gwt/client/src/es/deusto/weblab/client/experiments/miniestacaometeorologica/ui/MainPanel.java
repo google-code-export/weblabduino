@@ -28,6 +28,10 @@ import es.deusto.weblab.client.ui.widgets.WlTimer;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
 import es.deusto.weblab.client.ui.widgets.WlWebcamSafariBased;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.TabPanel;
 
 public class MainPanel extends Composite {
 
@@ -36,13 +40,14 @@ public class MainPanel extends Composite {
 
 	@UiField WlTimer timer;
 	@UiField VerticalPanel widget;
-	@UiField VerticalPanel cam;
-	@UiField(provided = true) WlWebcam camera;
-	@UiField(provided = true) WlWebcam GraficoHumidade;
+	@UiField VerticalPanel main;
 	@UiField(provided = true) WlWebcam GraficoTemperatura;
 	@UiField(provided = true) WlWebcam GraficoCO2;
 	@UiField(provided = true) WlWebcam GraficoLuz;
 	@UiField(provided = true) WlWebcam GraficoSom;
+	@UiField(provided = true) WlWebcam camera;
+	@UiField(provided = true) WlWebcam GraficoHumidade;
+	@UiField TabPanel graficos;
 
 
 	interface MainPanelUiBinder extends UiBinder<Widget, MainPanel> {
@@ -53,6 +58,8 @@ public class MainPanel extends Composite {
 		this.GraficoHumidade = GWT.create(WlWebcam.class);
 		this.GraficoTemperatura = GWT.create(WlWebcam.class);
 		this.GraficoCO2 = GWT.create(WlWebcam.class);
+		this.GraficoLuz = GWT.create(WlWebcam.class);
+		this.GraficoSom = GWT.create(WlWebcam.class);
 		initWidget(uiBinder.createAndBindUi(this));
 
 	}
@@ -62,23 +69,23 @@ public class MainPanel extends Composite {
 	}
 	
 	public WlWebcam getGraficoHumidade() {
-		return this.camera;
+		return this.GraficoHumidade;
 	}
 	
 	public WlWebcam getGraficoTemperatura() {
-		return this.camera;
+		return this.GraficoTemperatura;
 	}
 	
 	public WlWebcam getGraficoCO2() {
-		return this.camera;
+		return this.GraficoCO2;
 	}
 	
 	public WlWebcam getGraficoLuz() {
-		return this.camera;
+		return this.GraficoLuz;
 	}
 	
 	public WlWebcam getGraficoSom() {
-		return this.camera;
+		return this.GraficoSom;
 	}
 
 	public WlTimer getTimer(){

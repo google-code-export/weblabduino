@@ -21,6 +21,7 @@ import es.deusto.weblab.client.experiments.aquarium.AquariumCreatorFactory;
 import es.deusto.weblab.client.experiments.binary.BinaryCreatorFactory;
 import es.deusto.weblab.client.experiments.controlapp.ControlAppCreatorFactory;
 import es.deusto.weblab.client.experiments.corponegro.CorpoNegroCreatorFactory;
+import es.deusto.weblab.client.experiments.miniestacaometeorologica.MiniEstacaoMeteorologicaCreatorFactory;
 import es.deusto.weblab.client.experiments.redirect.RedirectCreatorFactory;
 import es.deusto.weblab.client.experiments.robot_movement.RobotMovementCreatorFactory;
 import es.deusto.weblab.client.experiments.submarine.SubmarineCreatorFactory;
@@ -46,6 +47,7 @@ class EntryRegistry {
 		new AquariumCreatorFactory(),
 		new RedirectCreatorFactory(),
 		new CorpoNegroCreatorFactory(),
+		new MiniEstacaoMeteorologicaCreatorFactory(),
 	};
 	
 	static final List<ExperimentEntry> entries = new Vector<ExperimentEntry>();
