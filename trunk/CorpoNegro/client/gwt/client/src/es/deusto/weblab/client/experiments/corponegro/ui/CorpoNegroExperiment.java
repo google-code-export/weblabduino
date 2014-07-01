@@ -14,14 +14,20 @@
 
 package es.deusto.weblab.client.experiments.corponegro.ui;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import es.deusto.weblab.client.comm.exceptions.CommException;
 import es.deusto.weblab.client.configuration.IConfigurationRetriever;
+import es.deusto.weblab.client.ui.widgets.IWlActionListener;
 import es.deusto.weblab.client.lab.experiments.IBoardBaseController;
 import es.deusto.weblab.client.lab.experiments.UIExperimentBase;
+import es.deusto.weblab.client.ui.widgets.IWlWidget;
+import es.deusto.weblab.client.ui.widgets.WlButton;
+import es.deusto.weblab.client.ui.widgets.WlSwitch;
 import es.deusto.weblab.client.ui.widgets.WlTimer;
 import es.deusto.weblab.client.ui.widgets.WlWebcam;
 
@@ -57,8 +63,7 @@ public class CorpoNegroExperiment extends UIExperimentBase{
     	final JSONObject obj = (JSONObject)value;
     	
 		final MainPanel mainPanel = new MainPanel();
-    	
-		// 
+    	 
 		// Configure the camera
 		final WlWebcam camera = mainPanel.getWebcam();
 		camera.setUrl("http://weblabduino.pucsp.br/webcam/cna/image.jpg");
@@ -72,17 +77,30 @@ public class CorpoNegroExperiment extends UIExperimentBase{
 		graficoPNGTemperatura.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_temperatura.png");
 		graficoPNGTemperatura.configureWebcam(obj);
 		graficoPNGTemperatura.start();
-		addDisposableWidgets(graficoPNGTemperatura);
+		addDisposableWidgets(graficoPNGTemperatura);		
 				
 		// Configure the timer
 		final WlTimer timer = mainPanel.getTimer();
 		timer.updateTime(time);
-		addDisposableWidgets(timer);
+		addDisposableWidgets(timer);	
 		
+		
+		final WlSwitch controlarLampada = mainPanel.getControlarLampada();
 		
 		this.putWidget(mainPanel);
-	}
 
+		
+		controlarLampada.addActionListener(new IWlActionListener() {
+			
+			@Override
+			public void onAction(IWlWidget widget) {
+				CorpoNegroExperiment.this.boardController.sendCommand("1");
+			}
+		});
+		
+				
+	}
+    
 	
 }
 
