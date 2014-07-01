@@ -27,11 +27,17 @@ import es.deusto.weblab.client.ui.widgets.WlWebcam;
 import es.deusto.weblab.client.ui.widgets.WlTimer;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
+
 import es.deusto.weblab.client.ui.widgets.WlWebcamSafariBased;
+
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.TabPanel;
+
+import es.deusto.weblab.client.ui.widgets.WlButton;
+import es.deusto.weblab.client.ui.widgets.WlSwitch.SwitchEvent;
+import es.deusto.weblab.client.ui.widgets.WlSwitch;
 
 public class MainPanel extends Composite {
 
@@ -43,6 +49,7 @@ public class MainPanel extends Composite {
 	@UiField VerticalPanel main;
 	@UiField(provided = true) WlWebcam GraficoTemperatura;
 	@UiField(provided = true) WlWebcam camera;
+	@UiField WlSwitch ControlarLampada;
 
 
 
@@ -50,6 +57,7 @@ public class MainPanel extends Composite {
 	}
 
 	public MainPanel() {
+		this.ControlarLampada = GWT.create(WlSwitch.class);
 		this.camera = GWT.create(WlWebcam.class);
 		this.GraficoTemperatura = GWT.create(WlWebcam.class);
 		initWidget(uiBinder.createAndBindUi(this));
@@ -63,9 +71,14 @@ public class MainPanel extends Composite {
 	public WlWebcam getGraficoTemperatura() {
 		return this.GraficoTemperatura;
 	}
-
+	
+	public WlSwitch getControlarLampada(){
+		return this.ControlarLampada;
+	}
+	
 	public WlTimer getTimer(){
 		return this.timer;
 	}
+	
 
 }
