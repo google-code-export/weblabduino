@@ -38,6 +38,8 @@ import com.google.gwt.user.client.ui.TabPanel;
 import es.deusto.weblab.client.ui.widgets.WlButton;
 import es.deusto.weblab.client.ui.widgets.WlSwitch.SwitchEvent;
 import es.deusto.weblab.client.ui.widgets.WlSwitch;
+import es.deusto.weblab.client.ui.widgets.WlStreamImage;
+import com.google.gwt.user.client.ui.DecoratedStackPanel;
 
 public class MainPanel extends Composite {
 
@@ -46,10 +48,9 @@ public class MainPanel extends Composite {
 
 	@UiField WlTimer timer;
 	@UiField VerticalPanel widget;
-	@UiField VerticalPanel main;
-	@UiField(provided = true) WlWebcam GraficoTemperatura;
 	@UiField(provided = true) WlWebcam camera;
 	@UiField WlSwitch ControlarLampada;
+	@UiField WlStreamImage GraficoTemperatura;
 
 
 
@@ -59,7 +60,7 @@ public class MainPanel extends Composite {
 	public MainPanel() {
 		this.ControlarLampada = GWT.create(WlSwitch.class);
 		this.camera = GWT.create(WlWebcam.class);
-		this.GraficoTemperatura = GWT.create(WlWebcam.class);
+		this.GraficoTemperatura = GWT.create(WlStreamImage.class);
 		initWidget(uiBinder.createAndBindUi(this));
 
 	}
@@ -68,7 +69,7 @@ public class MainPanel extends Composite {
 		return this.camera;
 	}
 	
-	public WlWebcam getGraficoTemperatura() {
+	public WlStreamImage getGraficoTemperatura() {
 		return this.GraficoTemperatura;
 	}
 	

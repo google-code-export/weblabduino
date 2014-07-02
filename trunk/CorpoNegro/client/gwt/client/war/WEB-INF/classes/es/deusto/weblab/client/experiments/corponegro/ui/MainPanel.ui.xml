@@ -8,14 +8,35 @@
 
 	
 	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10" height="300" styleName="" ui:field="widget">
-		<g:VerticalPanel ui:field="main" width="100%" height="100%">
-			<g:HorizontalPanel>
-				<p1:WlWebcam ui:field="GraficoTemperatura"/>
-				<p1:WlWebcam ui:field="camera"/>
-			</g:HorizontalPanel>
-			<p1:WlSwitch ui:field="ControlarLampada"/>
-				<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
-			</g:VerticalPanel>
+		<g:Grid>
+			<g:row>
+				<g:customCell>
+					<g:DecoratorPanel>
+						<p1:WlWebcam ui:field="camera"/>
+					</g:DecoratorPanel>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:CaptionPanel captionText="Controlar Lâmpada" width="75px">
+						<p1:WlSwitch ui:field="ControlarLampada" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" width="57px" height="39px"/>
+					</g:CaptionPanel>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<g:DisclosurePanel open="true">
+							<g:header>Gráficos</g:header>
+							<p1:WlStreamImage ui:field="GraficoTemperatura" width="5cm" height="4cm"/>
+						</g:DisclosurePanel>
+				</g:customCell>
+			</g:row>
+			<g:row>
+				<g:customCell>
+					<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
+				</g:customCell>
+			</g:row>
+		</g:Grid>
 	 </g:VerticalPanel>
 	
 </ui:UiBinder> 

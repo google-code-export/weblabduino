@@ -27,6 +27,7 @@ import es.deusto.weblab.client.lab.experiments.IBoardBaseController;
 import es.deusto.weblab.client.lab.experiments.UIExperimentBase;
 import es.deusto.weblab.client.ui.widgets.IWlWidget;
 import es.deusto.weblab.client.ui.widgets.WlButton;
+import es.deusto.weblab.client.ui.widgets.WlStreamImage;
 import es.deusto.weblab.client.ui.widgets.WlSwitch;
 import es.deusto.weblab.client.ui.widgets.WlTimer;
 import es.deusto.weblab.client.ui.widgets.WlWebcam;
@@ -73,9 +74,9 @@ public class CorpoNegroExperiment extends UIExperimentBase{
 		addDisposableWidgets(camera);
 		
 		//Grafico gerado no Xively para o sensor de monoxido de carbono 
-		final WlWebcam graficoPNGTemperatura = mainPanel.getGraficoTemperatura();
+		final WlStreamImage graficoPNGTemperatura = mainPanel.getGraficoTemperatura();
 		graficoPNGTemperatura.setUrl("https://api.cosm.com/v2/feeds/107050970/datastreams/sensor_temperatura.png");
-		graficoPNGTemperatura.configureWebcam(obj);
+		graficoPNGTemperatura.configureImageStream(obj);
 		graficoPNGTemperatura.start();
 		addDisposableWidgets(graficoPNGTemperatura);		
 				
