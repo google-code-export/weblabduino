@@ -1,53 +1,41 @@
-/*
-  Web Server
- 
- A simple web server that shows the value of the analog input pins.
- using an Arduino Wiznet Ethernet shield. 
- 
- Circuit:
- * Ethernet shield attached to pins 10, 11, 12, 13
- * Analog inputs attached to pins A0 through A5 (optional)
- 
- created 18 Dec 2009
- by David A. Mellis
- modified 9 Apr 2012
- by Tom Igoe
- 
- */
-
 #include <SPI.h>
 #include <Ethernet.h>
 
-// Enter a MAC address and IP address for your controller below.
-// The IP address will be dependent on your local network:
-byte mac[] = { 
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x3a };
+//Atribua um endereco MAC para o shield Ethernet
+byte mac[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x3a };
+char leitura;
+unsigned long tempo = millis();
 
+//Pino de controle da lampada
+int lampada = 9;
+int statusLampada;
 
-// Initialize the Ethernet server library
-// with the IP address and port you want to use 
-// (port 80 is default for HTTP):
+// Acesso ao shield ethernet pela porta 80
 EthernetServer server(80);
 
 void setup() {
- // Open serial communications and wait for port to open:
+ 
+  // Inicia-se a comunicaço serial e aguarda uma resposta
   Serial.begin(9600);
    while (!Serial) {
-    ; // wait for serial port to connect. Needed for Leonardo only
+    ; // wait for serial port to connect. Needed for Leonrdo only
   }
 
-
-  // start the Ethernet connection and the server:
+  // Inicia-se o shield ethernet com o MAC configurado anteriormente
   Ethernet.begin(mac);
   server.begin();
-  Serial.print("server is at ");
+  
+  Serial.print("IP: ");
   Serial.println(Ethernet.localIP());
+  
+  pinMode(lampada,OUTPUT);
+  digitalWrite(lampada,LOW);
     
 }
 
 
 void loop() {
-   // listen for incoming clients, and process qequest.
+   // listen for incoming clients, and process request.
   checkForClient();
   
 }
@@ -68,19 +56,22 @@ void checkForClient(){
         clientMsg+=c;//store the recieved chracters in a string
 
           Serial.println(clientMsg);
-
-           switch (c) {
-            case '1':
-              //add code here to trigger on 2
-              blinkPin(5, client);
-              client.println("fim");
-              client.stop(); // close the connection:
-              break;
           
-            default:
+          if(clientMsg = "1"){
+            statusLampada = digitalRead(lampada);
+            
+            if(statusLampada){
+              digitalWrite(lampada,HIGH);
+            }else{
+              digitalWrite(lampada,LOW);
+            }
+            
+            
+          }else{
               client.stop(); // close the connection:
-              break;            
+
           }
+          
 
       }
     }
@@ -92,45 +83,31 @@ void checkForClient(){
 
 }
 
-void blinkPin(int pin, EthernetClient client){
-  
-  client.print("Blinking on pin ");
-  client.println(pin);
 
-  pinMode(pin,OUTPUT);
-  digitalWrite(pin, HIGH);
-  delay(1000);
-  digitalWrite(pin, LOW);
-  delay(1000);
+void temperaturaMediaCalotas(){
+  int i;
+  int branco = A0;
+  int pretaval = A1;
 
-}
-
-void onPin(int pin, EthernetClient client){
-  
-  client.print("Turning on pin ");
-  client.println(pin);
-
-  digitalWrite(pin, HIGH);
-  delay(10);
-
-}
-
-void offPin(int pin, EthernetClient client){
-  
-  client.print("Turning off pin ");
-  client.println(pin);
-
-  digitalWrite(pin, LOW);
-  delay(10);
-
-}
-
-void readPin(int pin, EthernetClient client){
+  //Coleta 5 amostas
+    for (i = 0; i < 5; i++){
+      brancoval = brancoval + analogRead(A0);
+      pretaval = pretaval + analogRead(A1); 
+    }
     
-    client.print("analog input ");
-    client.print(pin);
-    client.print(" is ");
-    client.println(analogRead(pin));
-
+    
+   //Media das 5 amostras
+   brancoval = brancoval/5;   
+   pretaval = pretaval/5;     
+   
+   float temperaturaBranca=(5*brancoval*100)/1023;
+   float temperaturaPreta=(5*pretaval*100)/1023;
+   
+   Serial.print(temperaturaPreta);
+   Serial.print("   ");
+   Serial.print(temperaturaBranca);
+   Serial.print("   ");
+   Serial.println(tempo);
+   delay(100);
+     
 }
-
