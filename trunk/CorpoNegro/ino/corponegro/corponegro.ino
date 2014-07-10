@@ -1,14 +1,16 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
-//Atribua um endereco MAC para o shield Ethernet
+//Endereco MAC para o shield Ethernet
 byte mac[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x3a };
-char leitura;
 unsigned long tempo = millis();
 
 //Pino de controle da lampada
 int lampada = 9;
 int statusLampada;
+
+//Mensagem enviada pela comunicacao ethernet para controlar o experimento
+String clientMsg ="";
 
 // Acesso ao shield ethernet pela porta 80
 EthernetServer server(80);
@@ -35,79 +37,71 @@ void setup() {
 
 
 void loop() {
-   // listen for incoming clients, and process request.
+
+  // listen for incoming clients, and read data from them.
   checkForClient();
+  
+  if(clientMsg != ""){
+  executarComandoEnviado(clientMsg);
+  }
   
 }
 
 void checkForClient(){
-
+       
+  //Gets a client that is connected to the server and has data available for reading
   EthernetClient client = server.available();
-
+  
+  clientMsg =""; 
+  
+  //Verifica se existe um cliente conectado
   if (client) {
-        Serial.println("Cliente Conectado");
-        String clientMsg ="";
-
+       
+        Serial.println("Cliente Conectado");   
+    
+    //Verifica se existem dados remanescentes do cliente, conectado ou nao
     while (client.connected()) {
-      if (client.available()) {
-        
-        char c = client.read();
+      
+      char c = client.read();//Faz a leitura de um caracter
               
-        clientMsg+=c;//store the recieved chracters in a string
-
-          Serial.println(clientMsg);
-          
-          if(clientMsg = "1"){
-            statusLampada = digitalRead(lampada);
-            
-            if(statusLampada){
-              digitalWrite(lampada,HIGH);
-            }else{
-              digitalWrite(lampada,LOW);
-            }
-            
-            
-          }else{
-              client.stop(); // close the connection:
-
-          }
-          
-
-      }
-    }
-
-    delay(1); // give the web browser time to receive the data
-    client.stop(); // close the connection:
-
-  } 
+      clientMsg+=c;//Armazena os dados numa cadeia de caracteres (string)
+     
+    }  
+  }
+  
+  client.flush(); //Exclusao de qualquer dado remanescente dos clients
+  client.stop(); // Fechar qualquer conexao
 
 }
 
-
 void temperaturaMediaCalotas(){
+  
   int i;
-  int branco = A0;
-  int pretaval = A1;
+  int calotaBrancaAnalog = A0;
+  int calotaPretaAnalog = A1;
 
   //Coleta 5 amostas
     for (i = 0; i < 5; i++){
-      brancoval = brancoval + analogRead(A0);
-      pretaval = pretaval + analogRead(A1); 
+      calotaBrancaAnalog = calotaBrancaAnalog + analogRead(A0);
+      calotaPretaAnalog = calotaPretaAnalog + analogRead(A1); 
     }
     
     
    //Media das 5 amostras
-   brancoval = brancoval/5;   
-   pretaval = pretaval/5;     
+   calotaBrancaAnalog = calotaBrancaAnalog/5;   
+   calotaPretaAnalog = calotaPretaAnalog/5;     
    
-   float temperaturaBranca=(5*brancoval*100)/1023;
-   float temperaturaPreta=(5*pretaval*100)/1023;
+   float temperaturaCalotaBranca=(5*calotaBrancaAnalog*100)/1023;
+   float temperaturaCalotaPreta=(5*calotaPretaAnalog*100)/1023;
    
-   Serial.print(temperaturaPreta);
+   Serial.print(temperaturaCalotaPreta);
    Serial.print("   ");
-   Serial.print(temperaturaBranca);
+   Serial.print(temperaturaCalotaBranca);
    Serial.print("   ");
    Serial.println(tempo);
-   delay(100);
-     
+   delay(100);     
+}
+
+void executarComandoEnviado(String clientMsg){
+  
 }
