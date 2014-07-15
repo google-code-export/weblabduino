@@ -42,6 +42,8 @@ void loop() {
   checkForClient();
   
   if(clientMsg != ""){
+  Serial.println("Executando comando:");
+  Serial.println(clientMsg);  
   executarComandoEnviado(clientMsg);
   }
   
@@ -65,7 +67,7 @@ void checkForClient(){
       char c = client.read();//Faz a leitura de um caracter
               
       clientMsg+=c;//Armazena os dados numa cadeia de caracteres (string)
-     
+      //checar o tamanho da String clientMsg
     }  
   }
   
