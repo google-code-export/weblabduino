@@ -42,8 +42,8 @@ void loop() {
   checkForClient();
   
   if(clientMsg != ""){
-  Serial.println("Executando comando:");
-  Serial.println(clientMsg);  
+  //Serial.println("Executando comando:");
+  //Serial.println(clientMsg);  
   executarComandoEnviado(clientMsg);
   }
   
@@ -57,7 +57,7 @@ void checkForClient(){
   clientMsg =""; 
   
   //Verifica se existe um cliente conectado
-  if (client) {
+  if (client == true) {
        
         Serial.println("Cliente Conectado");   
     
@@ -65,10 +65,34 @@ void checkForClient(){
     while (client.connected()) {
       
       char c = client.read();//Faz a leitura de um caracter
-              
+      
+      if ( c > 0){// Testa se ainda existem caracteres, caso negativo a funcao read() envia -1.
+            
       clientMsg+=c;//Armazena os dados numa cadeia de caracteres (string)
-      //checar o tamanho da String clientMsg
-    }  
+      
+      Serial.print("STRING: ");
+      Serial.println(clientMsg);
+      Serial.print("TAMANHO DA STRING: ");
+      Serial.println(clientMsg.length());   
+   
+      //Corrigir os caracteres nulos da string
+          
+      //checar o tamanho da String clientMsg para nao travar o hardware
+       if(clientMsg.length() > '20'){     
+         client.flush(); //Exclusao de qualquer dado remanescente dos clients
+         client.stop(); // Fechar qualquer conexao
+       }
+      
+      
+      }else{
+       
+         client.flush(); //Exclusao de qualquer dado remanescente dos clients
+         client.stop(); // Fechar qualquer conexao
+ 
+      }
+       
+    }
+    
   }
   
   client.flush(); //Exclusao de qualquer dado remanescente dos clients
@@ -105,5 +129,8 @@ void temperaturaMediaCalotas(){
 }
 
 void executarComandoEnviado(String clientMsg){
+  
+  server.write("Comando ");
+  //server.write(clientMsg);
   
 }
