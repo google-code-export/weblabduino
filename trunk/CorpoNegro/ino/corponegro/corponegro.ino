@@ -10,7 +10,12 @@ int lampada = 9;
 int statusLampada;
 
 //Mensagem enviada pela comunicacao ethernet para controlar o experimento
-String clientMsg ="";
+char c = 0;
+char command = 0;
+
+//Comando recebido com sucesso
+boolean runCommand = false;
+
 
 // Acesso ao shield ethernet pela porta 80
 EthernetServer server(80);
@@ -38,13 +43,29 @@ digitalWrite(lampada,LOW);
 
 void loop() {
 
-// listen for incoming clients, and read data from them.
+// Verificar clients e receber comandos via ethernet.
 checkForCommands();
 
-if(clientMsg != ""){
-Serial.print("Executando comando:");
-Serial.println(clientMsg);
-execCommand(clientMsg);
+if(runCommand){
+
+runCommand = false;
+
+switch(command){
+
+case 'a':
+execCommand(command);
+
+case 'b':
+execCommand(command);
+
+case 'c':
+execCommand(command);
+
+default:
+break;
+
+}
+
 }
 
 }
@@ -54,36 +75,22 @@ void checkForCommands(){
 //Gets a client that is connected to the server and has data available for reading
 EthernetClient client = server.available();
 
-clientMsg ="";
-
 //Verifica se existe um cliente conectado
-if (client == true) {
+if (client) {
 
 Serial.println("Cliente Conectado");
 
 //Verifica se existem dados remanescentes do cliente, conectado ou nao
-while (client.connected()) {
+if (client.connected()) {
 
-char c = client.read();//Faz a leitura de um caracter
+c = client.read();//Faz a leitura de um caracter
+Serial.print("Caracter recebido [");
+Serial.print(c);
+Serial.println("]");
 
-//checar sinalizacao do final do comando
-if(c == 13 || c == 10){
-Serial.println("Final do comando atingido, finalizando conexao");  
-client.flush(); //Exclusao de qualquer dado remanescente dos clients
-client.stop(); // Fechar qualquer conexao
-}
+if ( c >= 0 & c <= 127 ){// Testa se o caracter é valido. (client.read irá enviar -1 para sinalizar que não existem mais dados)
 
-//checar o tamanho da String clientMsg para nao travar o hardware
-if(clientMsg.length() > 20 ){
-Serial.println("O comando excedeu seu tamanho limite, finalizando conexao");  
-client.flush(); //Exclusao de qualquer dado remanescente dos clients
-client.stop(); // Fechar qualquer conexao
-}
-
-
-if ( c <= 127 & c>= 0 ){// Testa se o caracter é valido. (client.read irá enviar -1 para sinalizar que não existem mais dados)
-
-clientMsg+=c;//Armazena os dados numa cadeia de caracteres (string)
+Serial.println("Caracter valido");  
 
 }else{
 
@@ -93,12 +100,26 @@ client.stop(); // Fechar qualquer conexao
 
 }
 
+//checar sinalizacao do final do comando
+if(c == 13 || c == 10 || c== -1){
+Serial.println("Caracter de finalização detectado, encerrando conexao");  
+client.flush(); //Exclusao de qualquer dado remanescente dos clients
+client.stop(); // Fechar qualquer conexao
 }
 
-}
+command = c ;
+Serial.print("Caracter [");
+Serial.print(command);
+Serial.println("] armazenado");
+runCommand = true;
  
 client.flush(); //Exclusao de qualquer dado remanescente dos clients
 client.stop(); // Fechar qualquer conexao
+
+
+}
+
+}
 
 }
 
@@ -130,10 +151,10 @@ Serial.println(tempo);
 delay(100);
 }
 
-void execCommand(String clientMsg){
+void execCommand(char command){
 
 Serial.print("Comando [");
-Serial.print(clientMsg);
+Serial.print(command);
 Serial.println("] executado com sucesso.");
 
 }
