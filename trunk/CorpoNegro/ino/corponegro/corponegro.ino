@@ -6,7 +6,7 @@ byte mac[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x3a };
 unsigned long tempo = millis();
 
 //Pino de controle da lampada
-int lampada = 9;
+int lampada = 6;
 int statusLampada;
 
 //Mensagem enviada pela comunicacao ethernet para controlar o experimento
@@ -49,20 +49,19 @@ checkForCommands();
 if(runCommand){
 
 runCommand = false;
+  
+Serial.print("Executando comando [");
+Serial.print(command);
+Serial.println("] enviado...");
 
 switch(command){
 
-case 'a':
-execCommand(command);
-
-case 'b':
-execCommand(command);
-
-case 'c':
-execCommand(command);
+case 'l':
+controlarLampada(command);
+break;
 
 default:
-break;
+Serial.println("Nenhum comando executado");
 
 }
 
@@ -90,11 +89,11 @@ Serial.println("]");
 
 if ( c >= 0 & c <= 127 ){// Testa se o caracter é valido. (client.read irá enviar -1 para sinalizar que não existem mais dados)
 
-Serial.println("Caracter valido");  
+Serial.println("Caracter valido");
 
 }else{
 
-Serial.println("Caracter nao reconhecido na tabela ASCII, finalizando conexao");  
+Serial.println("Caracter nao reconhecido na tabela ASCII, finalizando conexao");
 client.flush(); //Exclusao de qualquer dado remanescente dos clients
 client.stop(); // Fechar qualquer conexao
 
@@ -102,7 +101,7 @@ client.stop(); // Fechar qualquer conexao
 
 //checar sinalizacao do final do comando
 if(c == 13 || c == 10 || c== -1){
-Serial.println("Caracter de finalização detectado, encerrando conexao");  
+Serial.println("Caracter de finalização detectado, encerrando conexao");
 client.flush(); //Exclusao de qualquer dado remanescente dos clients
 client.stop(); // Fechar qualquer conexao
 }
@@ -112,7 +111,7 @@ Serial.print("Caracter [");
 Serial.print(command);
 Serial.println("] armazenado");
 runCommand = true;
- 
+
 client.flush(); //Exclusao de qualquer dado remanescente dos clients
 client.stop(); // Fechar qualquer conexao
 
@@ -151,10 +150,16 @@ Serial.println(tempo);
 delay(100);
 }
 
-void execCommand(char command){
+void controlarLampada(char command){
 
-Serial.print("Comando [");
-Serial.print(command);
-Serial.println("] executado com sucesso.");
+statusLampada = digitalRead(lampada);
+ 
+if(statusLampada == 1){
+  Serial.println("Desligando lampada...");
+  digitalWrite(lampada,LOW);
+}else{
+  Serial.println("Ligando lampada...");
+  digitalWrite(lampada,HIGH);
+}
 
 }
