@@ -57,11 +57,15 @@ Serial.println("] enviado...");
 switch(command){
 
 case 'l':
-controlarLampada(command);
+controlarLampada();
+break;
+
+case 'd':
+temperaturaCalotas();
 break;
 
 case '9':
-controlarLampada(command);
+resetExperimento();
 break;
 
 default:
@@ -127,7 +131,7 @@ client.stop(); // Fechar qualquer conexao
 
 }
 
-void temperaturaMediaCalotas(){
+void temperaturaCalotas(){
 
 int i;
 int calotaBrancaAnalog = A0;
@@ -155,16 +159,22 @@ Serial.println(tempo);
 delay(100);
 }
 
-void controlarLampada(char command){
+void controlarLampada(){
 
 statusLampada = digitalRead(lampada);
  
 if(statusLampada == 1){
-  Serial.println("Desligando lampada...");
+  Serial.println("Lampada ligada, desligando lampada...");
   digitalWrite(lampada,LOW);
 }else{
-  Serial.println("Ligando lampada...");
+  Serial.println("Lampada desligada, Ligando lampada...");
   digitalWrite(lampada,HIGH);
 }
+}
 
+void resetExperimento(){
+
+  Serial.println("Reiniciando experimento...");
+  digitalWrite(lampada,LOW);
+  
 }
