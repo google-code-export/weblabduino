@@ -60,8 +60,13 @@ case 'l':
 controlarLampada(command);
 break;
 
+case '9':
+controlarLampada(command);
+break;
+
 default:
 Serial.println("Nenhum comando executado");
+break;
 
 }
 
