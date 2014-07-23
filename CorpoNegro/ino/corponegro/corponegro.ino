@@ -133,6 +133,9 @@ client.stop(); // Fechar qualquer conexao
 
 void temperaturaCalotas(){
 
+//Gets a client that is connected to the server and has data available for reading
+EthernetClient client = server.available();
+  
 int i;
 int calotaBrancaAnalog = A0;
 int calotaPretaAnalog = A1;
@@ -156,6 +159,9 @@ Serial.print(" ");
 Serial.print(temperaturaCalotaBranca);
 Serial.print(" ");
 Serial.println(tempo);
+
+server.write(temperaturaCalotaPreta);
+
 delay(100);
 }
 
