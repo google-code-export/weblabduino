@@ -26,15 +26,14 @@ public class DummyExperimentServer extends ExperimentServer {
 	}
 	
 	public String sendCommand(String command)  throws WebLabException {
-		
-		/*
-		String comando = String.valueOf(command.charAt(command.length()-1));
-			
+					
+		    String dados = "Recebendo dados do experimento...";
 			ArduinoEthernetComm aec = new ArduinoEthernetComm();
 			
 			try {
 				//Colocar estes dados retornados no documento csv ou retornar ao usuário para exibir o gráfico
-				System.out.println("Dados Arduino => " + aec.ArduinoEthernetComm("192.168.42.2",80,comando));
+				dados = aec.ArduinoEthernetComm("192.168.1.91",80,command);
+				System.out.println("Dados Arduino => " + dados);
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -43,9 +42,9 @@ public class DummyExperimentServer extends ExperimentServer {
 			
 			}
 			
-			*/
+		
 			
-			return "visualize o resultado...";
+			return dados;
 		
 	}
 	
