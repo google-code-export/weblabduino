@@ -7,7 +7,7 @@ import java.net.*;
 public class ArduinoEthernetComm
 {
 	
-	public String ArduinoEthernetComm(String serverIP, int serverPort, String msgToServer) throws Exception
+	public void ArduinoEthernetComm(String serverIP, int serverPort, String msgToServer) throws Exception
 	 {
 					
 		  String msgFromServer="Nada recebido do experimento";//received message will be stored here  
@@ -32,8 +32,6 @@ public class ArduinoEthernetComm
 		  clientSocket.close();
 		  System.out.println("Disconnected from:"+serverIP);//debug
 		  
-		  return(msgFromServer);
-
 	 }
 
 
