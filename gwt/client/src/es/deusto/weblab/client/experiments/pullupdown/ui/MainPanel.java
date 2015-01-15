@@ -12,7 +12,7 @@
  *
  */
 
-package es.deusto.weblab.client.experiments.corponegro.ui;
+package es.deusto.weblab.client.experiments.pullupdown.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -28,24 +28,32 @@ import es.deusto.weblab.client.ui.widgets.WlTimer;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
 import es.deusto.weblab.client.ui.widgets.WlWebcamSafariBased;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.TabPanel;
 
 public class MainPanel extends Composite {
 
 	private static MainPanelUiBinder uiBinder = GWT
 			.create(MainPanelUiBinder.class);
 
-	@UiField(provided = true) WlWebcam camera;
 	@UiField WlTimer timer;
 	@UiField VerticalPanel widget;
-	@UiField VerticalPanel cam;
-	@UiField(provided = true) WlWebcam camera2;
+	@UiField VerticalPanel main;
+	@UiField(provided = true) WlWebcam camera;
+	@UiField(provided = true) WlWebcam GraficoPullUp;
+	@UiField(provided = true) WlWebcam GraficoPullDown;
+
+
 
 	interface MainPanelUiBinder extends UiBinder<Widget, MainPanel> {
 	}
 
 	public MainPanel() {
 		this.camera = GWT.create(WlWebcam.class);
-		this.camera2 = GWT.create(WlWebcam.class);
+		this.GraficoPullUp = GWT.create(WlWebcam.class);
+		this.GraficoPullDown = GWT.create(WlWebcam.class);
 		initWidget(uiBinder.createAndBindUi(this));
 
 	}
@@ -54,11 +62,14 @@ public class MainPanel extends Composite {
 		return this.camera;
 	}
 	
-	public WlWebcam getWebcam2() {
-		return this.camera2;
+	public WlWebcam getGraficoPullUp() {
+		return this.GraficoPullUp;
+	}
+
+	public WlWebcam getGraficoPullDown() {
+		return this.GraficoPullDown;
 	}
 	
-
 	public WlTimer getTimer(){
 		return this.timer;
 	}

@@ -8,31 +8,30 @@
 * This software consists of contributions made by many individuals, 
 * listed below:
 *
-* Author: FILLME
+* Author: Bruno Stabile - brn.stabile@gmail.com
 *
 */
 
-package es.deusto.weblab.client.experiments.corponegro;
+package es.deusto.weblab.client.experiments.ledrgb;
+
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 
 import es.deusto.weblab.client.configuration.IConfigurationRetriever;
-import es.deusto.weblab.client.experiments.binary.ui.BinaryExperiment;
-import es.deusto.weblab.client.experiments.corponegro.ui.CorpoNegroExperiment;
+import es.deusto.weblab.client.experiments.ledrgb.ui.LEDRGBExperiment;
 import es.deusto.weblab.client.lab.experiments.ExperimentCreator;
-import es.deusto.weblab.client.lab.experiments.IBoardBaseController;
-import es.deusto.weblab.client.lab.experiments.IExperimentCreatorFactory;
 import es.deusto.weblab.client.lab.experiments.ExperimentFactory.IExperimentLoadedCallback;
 import es.deusto.weblab.client.lab.experiments.ExperimentFactory.MobileSupport;
-import es.deusto.weblab.client.lab.experiments.exceptions.ExperimentCreatorInstanciationException;
+import es.deusto.weblab.client.lab.experiments.IBoardBaseController;
+import es.deusto.weblab.client.lab.experiments.IExperimentCreatorFactory;
 
-public class CorpoNegroCreatorFactory implements IExperimentCreatorFactory{
+public class LEDRGBCreatorFactory implements IExperimentCreatorFactory{
 
 	@Override
 	public String getCodeName() {
 
-		return "corpo-negro";
+		return "mini-estacao-meteorologica";
 	}
 
 	@Override
@@ -47,7 +46,7 @@ public class CorpoNegroCreatorFactory implements IExperimentCreatorFactory{
 					
 					@Override
 					public void onSuccess() {
-						callback.onExperimentLoaded(new CorpoNegroExperiment(
+						callback.onExperimentLoaded(new LEDRGBExperiment(
 								configurationRetriever,
 								boardController
 							));
