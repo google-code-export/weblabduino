@@ -5,17 +5,28 @@
 	xmlns:p2="urn:import:com.google.gwt.user.cellview.client">
 
 	<ui:with field="i18n" type="es.deusto.weblab.client.i18n.IWebLabI18N" />
+	
 
 	
-	<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10" height="300" styleName="" ui:field="widget">
+ <g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER" borderWidth="0" spacing="10" height="300" styleName="" ui:field="widget">
 		<g:Grid>
 			<g:row>
 				<g:customCell>
-					<g:DecoratorPanel>
-						<p1:WlWebcam ui:field="camera"/>
-					</g:DecoratorPanel>
+							<g:DecoratorPanel>
+								<p1:WlWebcam ui:field="camera"/>
+							</g:DecoratorPanel>
 				</g:customCell>
+			
+			
+				<g:customCell>
+						<g:DecoratorPanel>
+							<p1:WlWebcam ui:field="camera2"/>
+						</g:DecoratorPanel>
+				</g:customCell>
+				
 			</g:row>
+			
+			
 			<g:row>
 				<g:customCell>
 					<g:CaptionPanel captionText="Controlar Lâmpada" width="75px">
@@ -23,6 +34,7 @@
 					</g:CaptionPanel>
 				</g:customCell>
 			</g:row>
+			
 			<g:row>
 				<g:customCell>
 					<g:DisclosurePanel open="true">
@@ -36,6 +48,7 @@
 					<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
 				</g:customCell>
 			</g:row>
+		
 		</g:Grid>
 	 </g:VerticalPanel>
 	
