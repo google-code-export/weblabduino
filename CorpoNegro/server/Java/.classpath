@@ -9,5 +9,11 @@
 	<classpathentry kind="lib" path="more.libs/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-client-3.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-common-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-server-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-client-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-common-3.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-client-3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-common-3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/xmlrpc-server-3.1-javadoc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
