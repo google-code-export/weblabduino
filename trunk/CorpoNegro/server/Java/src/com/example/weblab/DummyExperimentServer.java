@@ -39,10 +39,7 @@ public class DummyExperimentServer extends ExperimentServer {
 			
 			}
 			
-		
-			
 			return dados;
-		
 	}
 	
 	public void dispose() {
