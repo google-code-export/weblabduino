@@ -67,11 +67,19 @@ public class CorpoNegroExperiment extends UIExperimentBase{
     	 
 		// Configure the camera
 		final WlWebcam camera = mainPanel.getWebcam();
+		
 		camera.setUrl("http://weblabduino.pucsp.br/webcam/cna/image.jpg");
 		camera.setStreamingUrl("http://weblabduino.pucsp.br/webcam/cna/video.mjpeg",320,240);
 		camera.configureWebcam(obj);
 		camera.start();
 		addDisposableWidgets(camera);
+		
+		final WlWebcam camera2 = mainPanel.getWebcam2();
+		camera2.setUrl("http://weblabduino.pucsp.br/webcam/cna/image2.jpg");
+		camera2.setStreamingUrl("http://weblabduino.pucsp.br/webcam/cna/video2.mjpeg",320,240);
+		camera2.configureWebcam(obj);
+		camera2.start();
+		addDisposableWidgets(camera2);
 		
 		//Grafico gerado no Xively para o sensor de monoxido de carbono 
 		final WlStreamImage graficoPNGTemperatura = mainPanel.getGraficoTemperatura();

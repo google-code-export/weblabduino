@@ -2,9 +2,6 @@ package com.example.weblab;
 
 import java.io.File;
 
-import javax.sound.sampled.LineUnavailableException;
-
-
 import es.deusto.weblab.experimentservers.ExperimentServer;
 import es.deusto.weblab.experimentservers.exceptions.ExperimentServerInstantiationException;
 import es.deusto.weblab.experimentservers.exceptions.WebLabException;
@@ -50,9 +47,7 @@ public class DummyExperimentServer extends ExperimentServer {
 	
 	public void dispose() {
 		System.out.println("I'm at dispose");
-		
 
-		
 	}
 	
 	/* Optional methods (Override, Java 1.4 compatible...) */
