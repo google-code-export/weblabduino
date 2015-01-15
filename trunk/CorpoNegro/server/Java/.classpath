@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/xmlrpc-client-3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-common-3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/xmlrpc-server-3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="more.libs/mysql-connector-java-5.1.34-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
