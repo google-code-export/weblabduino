@@ -12,6 +12,7 @@
 		<g:Grid>
 			<g:row>
 				<g:customCell>
+				
 							<g:DecoratorPanel>
 								<p1:WlWebcam ui:field="camera"/>
 							</g:DecoratorPanel>
@@ -25,8 +26,9 @@
 				</g:customCell>
 				
 			</g:row>
+		</g:Grid>
 			
-			
+		<g:Grid>	
 			<g:row>
 				<g:customCell>
 					<g:CaptionPanel captionText="Controlar Lâmpada" width="75px">
