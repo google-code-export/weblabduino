@@ -5,15 +5,17 @@ import java.sql.*;
 public class ConexaoMysql {
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   static final String DB_URL = "jdbc:mysql://localhost/EMP";
+   static final String DB_URL = "jdbc:mysql://localhost/experimentos";
 
    //  Database credentials
-   static final String USER = "username";
-   static final String PASS = "password";
-   
-   public void Conectar() {
+   static final String USER = "cna";
+   static final String PASS = "cna";
+   char[] dadosArduinoDB;
+      
+   public void EnviarDadosDB(String dados) {
    Connection conn = null;
    Statement stmt = null;
+   
    
    try{
       //STEP 2: Register JDBC driver
@@ -27,13 +29,64 @@ public class ConexaoMysql {
       System.out.println("Creating statement...");
       stmt = conn.createStatement();
       String sql;
-      sql = "SELECT id, first, last, age FROM Employees";
-      ResultSet rs = stmt.executeQuery(sql);
+    		  
+      char[] dadosArduino = dados.toCharArray();
+      dadosArduinoDB = null;
       
+      for (int i = 21; i < 21; i++){
+    	  
+    	  if(dadosArduino[i]==';'){
+    		 dadosArduinoDB[i]=dadosArduino[i++];
+    	  }
+
+      }
       
-            
+      sql = "INSERT INTO `cna`(`ch0`"
+      		+ ", `ch1`"
+      		+ ", `ch2`"
+      		+ ", `ch3`"
+      		+ ", `ch4`"
+      		+ ", `ch5`"
+      		+ ", `ch6`"
+      		+ ", `ch7`"
+      		+ ", `ch8`"
+      		+ ", `ch9`"
+      		+ ", `ch10`"
+      		+ ", `ch11`"
+      		+ ", `ch12`"
+      		+ ", `ch13`"
+      		+ ", `ch14`"
+      		+ ", `ch15`"
+      		+ ", `ch16`"
+      		+ ", `ch17`"
+      		+ ", `ch18`"
+      		+ ", `ch19`"
+      		+ ", `data`) "
+      		+ "VALUES (1"
+			+",2"
+			+",2"
+			+",3"
+			+",4"
+			+",5"
+			+",0"
+			+",1"
+			+",2"
+			+",3"
+			+",4"
+			+",5"
+			+",6"
+			+",7"
+			+",8"
+			+",9"
+			+",10"
+			+",11"
+			+",12"
+			+",13"
+      		+ ",CURRENT_TIMESTAMP);";
+      
+      stmt.executeUpdate(sql);
+      
       //STEP 6: Clean-up environment
-      rs.close();
       stmt.close();
       conn.close();
    }catch(SQLException se){
