@@ -28,64 +28,10 @@ public class ConexaoMysql {
       System.out.println("Creating statement...");
       stmt = conn.createStatement();
       String sql;
-    		  
-      char[] dadosArduino = dados.toCharArray();
-            
-      for (int i = dadosArduino.length; i < dadosArduino.length; i++){
-    	  
-    	if(dadosArduino[i] == '!'){
-    		while(dadosArduino[i] != ';'){ 
-    			
-    			
-       	 }
-    		
-    	}
-    	 
+    		        
+      String[] valores = dados.split("-");
 
-      }
-      
-      sql = "INSERT INTO `cna`(`ch0`"
-      		+ ", `ch1`"
-      		+ ", `ch2`"
-      		+ ", `ch3`"
-      		+ ", `ch4`"
-      		+ ", `ch5`"
-      		+ ", `ch6`"
-      		+ ", `ch7`"
-      		+ ", `ch8`"
-      		+ ", `ch9`"
-      		+ ", `ch10`"
-      		+ ", `ch11`"
-      		+ ", `ch12`"
-      		+ ", `ch13`"
-      		+ ", `ch14`"
-      		+ ", `ch15`"
-      		+ ", `ch16`"
-      		+ ", `ch17`"
-      		+ ", `ch18`"
-      		+ ", `ch19`"
-      		+ ", `data`) "
-      		+ "VALUES (1"
-			+",2"
-			+",2"
-			+",3"
-			+",4"
-			+",5"
-			+",0"
-			+",1"
-			+",2"
-			+",3"
-			+",4"
-			+",5"
-			+",6"
-			+",7"
-			+",8"
-			+",9"
-			+",10"
-			+",11"
-			+",12"
-			+",13"
-      		+ ",CURRENT_TIMESTAMP);";
+      sql = "INSERT INTO `cna`(`ch0`, `ch1`, `data`) VALUES ("+valores[0]+","+valores[1]+",CURRENT_TIMESTAMP);";
       
       stmt.executeUpdate(sql);
       
