@@ -146,18 +146,23 @@ calotaPretaAnalog = calotaPretaAnalog/5;
 float temperaturaCalotaBranca=(5*calotaBrancaAnalog*100)/1023;
 float temperaturaCalotaPreta=(5*calotaPretaAnalog*100)/1023;
 
-Serial.print(temperaturaCalotaPreta);
-Serial.print(";");
-Serial.println(temperaturaCalotaBranca);
+int a = 6;
 
-client.print(';');
-client.print(temperaturaCalotaPreta);
-client.print(';');
-client.print(temperaturaCalotaBranca);
+while(a>0){
+  a--;
+  Serial.print(temperaturaCalotaPreta);
+  Serial.print(";");
+  Serial.println(temperaturaCalotaBranca);
+  
+  client.print(temperaturaCalotaPreta);
+  client.print('-');
+  client.println(temperaturaCalotaBranca);
+  
+  delay(1000);
+}
 
 
 
-delay(100);
 }
 
 void controlarLampada(){
@@ -181,7 +186,7 @@ void conectarRede(){
     delay(1000);
   }
   delay(200);
-  //system("/etc/init.d/networking restart");
+  system("/etc/init.d/networking restart");
   delay(200);
   server.begin();
   delay(200);
