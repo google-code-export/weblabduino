@@ -9,7 +9,11 @@ import java.net.Socket;
 public class ArduinoEthernetComm
 {
 	
-	public void ArduinoEthernetComm(String serverIP, int serverPort, String msgToServer) throws Exception
+	public ArduinoEthernetComm(){
+		
+	}
+	
+	public void CommEthArduino(String serverIP, int serverPort, String msgToServer) throws Exception
 	 {
 					
 		  String msgFromServer="Nada recebido do experimento";//received message will be stored here  
@@ -27,10 +31,11 @@ public class ArduinoEthernetComm
 		  outToServer.writeBytes(msgToServer);//sending the message
 		  
 		  System.out.println("sending to Arduino-Server: "+msgToServer);//debug
-		  
-		  msgFromServer = inFromServer.readLine();
-		  
-	      //System.out.println("received from Arduino-Server: " + msgFromServer);//print the answer
+		  		  	      
+	      while((msgFromServer = inFromServer.readLine()) != null){
+		      System.out.println("received from Arduino-Server: " + msgFromServer);//print the answer
+	      }
+	      
 		  clientSocket.close();
 		  System.out.println("Disconnected from:"+serverIP);//debug
 		  
