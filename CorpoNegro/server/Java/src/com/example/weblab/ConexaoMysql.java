@@ -10,7 +10,6 @@ public class ConexaoMysql {
    //  Database credentials
    static final String USER = "cna";
    static final String PASS = "cna";
-   char[] dadosArduinoDB;
       
    public void EnviarDadosDB(String dados) {
    Connection conn = null;
@@ -31,13 +30,17 @@ public class ConexaoMysql {
       String sql;
     		  
       char[] dadosArduino = dados.toCharArray();
-      dadosArduinoDB = null;
-      
-      for (int i = 21; i < 21; i++){
+            
+      for (int i = dadosArduino.length; i < dadosArduino.length; i++){
     	  
-    	  if(dadosArduino[i]==';'){
-    		 dadosArduinoDB[i]=dadosArduino[i++];
-    	  }
+    	if(dadosArduino[i] == '!'){
+    		while(dadosArduino[i] != ';'){ 
+    			
+    			
+       	 }
+    		
+    	}
+    	 
 
       }
       
