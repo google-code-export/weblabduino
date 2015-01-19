@@ -147,13 +147,15 @@ float temperaturaCalotaBranca=(5*calotaBrancaAnalog*100)/1023;
 float temperaturaCalotaPreta=(5*calotaPretaAnalog*100)/1023;
 
 Serial.print(temperaturaCalotaPreta);
-Serial.print(" ");
+Serial.print(";");
 Serial.println(temperaturaCalotaBranca);
 
-client.print('#');
+client.print(';');
+client.print(temperaturaCalotaPreta);
+client.print(';');
 client.print(temperaturaCalotaBranca);
-client.print(',');
-client.println(temperaturaCalotaPreta);
+
+
 
 delay(100);
 }
@@ -179,7 +181,7 @@ void conectarRede(){
     delay(1000);
   }
   delay(200);
-  system("/etc/init.d/networking restart");
+  //system("/etc/init.d/networking restart");
   delay(200);
   server.begin();
   delay(200);
