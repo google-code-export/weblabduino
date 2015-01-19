@@ -29,7 +29,7 @@ public class DummyExperimentServer extends ExperimentServer {
 			
 			try {
 				//Colocar estes dados retornados no documento csv ou retornar ao usuário para exibir o gráfico
-				aec.ArduinoEthernetComm("192.168.42.4",80,command);
+				aec.CommEthArduino("192.168.1.55", 80, command);
 				//System.out.println("Dados Arduino => " + dados);
 				
 			} catch (Exception e) {
