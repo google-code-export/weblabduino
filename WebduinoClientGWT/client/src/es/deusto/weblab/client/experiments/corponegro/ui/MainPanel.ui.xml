@@ -50,8 +50,10 @@
 					<p1:WlTimer ui:field="timer" horizontalAlignment="ALIGN_CENTER"/>
 				</g:customCell>
 			</g:row>
+			
 		
 		</g:Grid>
+				
 	 </g:VerticalPanel>
 	
 </ui:UiBinder> 
