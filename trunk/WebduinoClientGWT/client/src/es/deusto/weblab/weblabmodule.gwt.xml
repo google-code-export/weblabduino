@@ -10,6 +10,8 @@
 	<inherits name="com.google.gwt.json.JSON" />
 	<inherits name="com.google.gwt.junit.JUnit"/>
 	
+	<inherits name="com.googlecode.gwt.charts.Charts"/> 
+		
 	<inherits name='com.google.gwt.user.theme.standard.Standard'/>
 	
 	<!-- Languages available -->

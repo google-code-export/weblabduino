@@ -14,17 +14,14 @@
 
 package es.deusto.weblab.client;
 
-import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
+import es.deusto.weblab.client.experiments.corponegro.CorpoNegroCreatorFactory;
+import es.deusto.weblab.client.experiments.corponegro.ui.MainPanel;
 
-import es.deusto.weblab.client.configuration.IConfigurationRetriever;
-import es.deusto.weblab.client.experiments.miniestacaometeorologica.MiniEstacaoMeteorologicaCreatorFactory;
-import es.deusto.weblab.client.experiments.miniestacaometeorologica.ui.MainPanel;
-
-public class Weblabteste extends WebLabClient implements EntryPoint{
+public class Weblabteste extends WebLabClient{
 
 	MainPanel mp = new MainPanel();
-	MiniEstacaoMeteorologicaCreatorFactory ccc = new MiniEstacaoMeteorologicaCreatorFactory();
+	CorpoNegroCreatorFactory ccc = new CorpoNegroCreatorFactory();
 	
 	@Override
 	public void onModuleLoad() {
