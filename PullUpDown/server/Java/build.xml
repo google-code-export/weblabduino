@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project basedir="." default="build" name="WebLabXmlRpcServer">
 	
-    <path id="WebLabXmlRpcServer.classpath">
+    <path id="pud-server.classpath">
         <pathelement location="bin"/>
         <pathelement location="lib/commons-logging-1.1.jar"/>
         <pathelement location="lib/ws-commons-util-1.0.2.jar"/>
