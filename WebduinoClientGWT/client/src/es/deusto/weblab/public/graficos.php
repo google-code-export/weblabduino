@@ -31,41 +31,30 @@ include("./pChart/class/pImage.class.php");
 
 /* Put the timestamp column on the abscissa axis */
 $myData->setAbscissa("tempo");
-
-/* Associate the "Humidity" data serie to the second axis */
-$myData->setSerieOnAxis("branca", 1);
- 
-/* Name this axis "Time" */
 $myData->setXAxisName("data");
-
-/* First Y axis will be dedicated to the temperatures */
-$myData->setAxisName(0,"ch0");
-$myData->setAxisUnit(0,"°C");
- 
-/* Second Y axis will be dedicated to humidity */
-$myData->setAxisName(0,"ch1");
 $myData->setAxisUnit(0,"°C");
 
+/*=================================================================*/
 
-$myPicture = new pImage(1200,500,$myData);
-$Settings = array("R"=>167, "G"=>219, "B"=>191);
-$myPicture->drawFilledRectangle(0,0,900,230,$Settings);
+$myPicture = new pImage(700,500,$myData);
+$Settings = array("R"=>170, "G"=>183, "B"=>87, "Dash"=>1, "DashR"=>190, "DashG"=>203, "DashB"=>107);
+$myPicture->drawFilledRectangle(0,0,700,500,$Settings);
 
-$Settings = array("StartR"=>152, "StartG"=>182, "StartB"=>217, "EndR"=>207, "EndG"=>223, "EndB"=>227, "Alpha"=>50);
-$myPicture->drawGradientArea(0,0,900,230,DIRECTION_VERTICAL,$Settings);
+$Settings = array("StartR"=>147, "StartG"=>143, "StartB"=>255, "EndR"=>102, "EndG"=>158, "EndB"=>255, "Alpha"=>50);
+$myPicture->drawGradientArea(0,0,700,500,DIRECTION_VERTICAL,$Settings);
 
-$myPicture->drawRectangle(0,0,899,229,array("R"=>0,"G"=>0,"B"=>0));
+$myPicture->drawRectangle(0,0,699,499,array("R"=>0,"G"=>0,"B"=>0));
 
 $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>50,"G"=>50,"B"=>50,"Alpha"=>20));
 
 $myPicture->setFontProperties(array("FontName"=>"./pChart/fonts/Forgotte.ttf","FontSize"=>20));
 $TextSettings = array("Align"=>TEXT_ALIGN_MIDDLEMIDDLE
-, "R"=>0, "G"=>0, "B"=>0, "DrawBox"=>1, "BoxAlpha"=>30);
-$myPicture->drawText(450,25,"Temperatura das Calotas",$TextSettings);
+, "R"=>255, "G"=>255, "B"=>255);
+$myPicture->drawText(350,25,"Temperatura das Calotas",$TextSettings);
 
 $myPicture->setShadow(FALSE);
-$myPicture->setGraphArea(50,50,1100,430);
-$myPicture->setFontProperties(array("R"=>0,"G"=>0,"B"=>0,"FontName"=>"./pChart/fonts/pf_arma_five.ttf","FontSize"=>6));
+$myPicture->setGraphArea(50,50,675,460);
+$myPicture->setFontProperties(array("R"=>0,"G"=>0,"B"=>0,"FontName"=>"./pChart/fonts/pf_arma_five.ttf","FontSize"=>10));
 
 $Settings = array("Pos"=>SCALE_POS_LEFTRIGHT
 , "Mode"=>SCALE_MODE_FLOATING
@@ -75,14 +64,13 @@ $myPicture->drawScale($Settings);
 
 $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>50,"G"=>50,"B"=>50,"Alpha"=>10));
 
-$Config = array("DisplayValues"=>1, "BreakVoid"=>0, "BreakR"=>234, "BreakG"=>55, "BreakB"=>26);
+$Config = array("DisplayValues"=>1);
 $myPicture->drawSplineChart($Config);
 
-$Config = array("FontR"=>0, "FontG"=>0, "FontB"=>0, "FontName"=>"./pChart/fonts/pf_arma_five.ttf", "FontSize"=>10, "Margin"=>6, "Alpha"=>30, "BoxSize"=>5, "Style"=>LEGEND_ROUND
+$Config = array("FontR"=>0, "FontG"=>0, "FontB"=>0, "FontName"=>"./pChart/fonts/pf_arma_five.ttf", "FontSize"=>10, "Margin"=>6, "Alpha"=>30, "BoxSize"=>5, "Style"=>LEGEND_BOX
 , "Mode"=>LEGEND_HORIZONTAL
-, "Family"=>LEGEND_FAMILY_CIRCLE
 );
-$myPicture->drawLegend(808,16,$Config);
+$myPicture->drawLegend(10,15,$Config);
 
 $myPicture->stroke();
 
