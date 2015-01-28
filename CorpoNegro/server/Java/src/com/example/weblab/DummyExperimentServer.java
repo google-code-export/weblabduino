@@ -26,11 +26,11 @@ public class DummyExperimentServer extends ExperimentServer {
 					
 		    String dados = "Recebendo dados do experimento...";
 			ArduinoEthernetComm aec = new ArduinoEthernetComm();
-			
+
 			try {
 				//Colocar estes dados retornados no documento csv ou retornar ao usuário para exibir o gráfico
-				aec.CommEthArduino("192.168.1.36", 80, command);
-				//System.out.println("Dados Arduino => " + dados);
+				aec.CommEthArduino("192.168.42.4", 80, command);
+				aec.CommEthArduino("192.168.42.5", 80, "d");
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -38,7 +38,6 @@ public class DummyExperimentServer extends ExperimentServer {
 			
 			
 			}
-			
 			return dados;
 	}
 	
